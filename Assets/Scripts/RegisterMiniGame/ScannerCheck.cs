@@ -10,9 +10,9 @@ public class ScannerCheck : MonoBehaviour
     
     private void Update()
     {
-        Ray ray = new Ray(transform.position, Vector3.down);
+        Ray ray = new Ray(transform.position, transform.up*-1);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 0.02f, scanMask, QueryTriggerInteraction.UseGlobal))
+        if (Physics.Raycast(ray, out hit, 0.03f, scanMask, QueryTriggerInteraction.UseGlobal))
         {
             Debug.Log("hit scanner");
         }
