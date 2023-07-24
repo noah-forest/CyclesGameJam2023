@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -34,6 +35,9 @@ public class RegisterGameManager : MonoBehaviour
     private AudioSource beep;
     public Bounds spawnBounds;
 
+    public TextMeshPro scanText;
+    private int recentScanCount = 0;
+        
     private void Start()
     {
         beep = GetComponent<AudioSource>();
@@ -77,8 +81,21 @@ public class RegisterGameManager : MonoBehaviour
         }
     }
 
+    IEnumerator SetScanColor(float delay)
+    {
+        scanText.color = Color.green;
+        recentScanCount++;
+        yield return new WaitForSeconds(delay);
+        recentScanCount--;
+        if (recentScanCount == 0)
+        {
+            scanText.color = Color.white;
+        }
+    }
+
     public void ScanItem()
     {
+        StartCoroutine(SetScanColor(1));
         beep.PlayOneShot(beep.clip);
         Debug.Log("scanned item");
         curCustomer.numOfItems--;
@@ -118,6 +135,6 @@ public class RegisterGameManager : MonoBehaviour
 
     private void Completed()
     {
-        Debug.Log("Finished checking out customers!");
+        scanText.SetText("Finished!");
     }
 }
