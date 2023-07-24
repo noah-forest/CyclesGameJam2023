@@ -16,6 +16,13 @@ public class StinkerSpray : MonoBehaviour
     public ParticleSystem sprayParticles;
     public Transform raycastSprayFrom;
     private AudioSource spraySound;
+
+    public GameObject grabText;
+    public GameObject sprayText;
+    public bool showSprayText = true;
+
+    public bool facingLeft = false;
+    public Transform sprayBody;
     
     private Vector3 initialMousePosition;
     private Vector3 lastMousePosition;
@@ -44,6 +51,12 @@ public class StinkerSpray : MonoBehaviour
         // Check if left mouse button is being held
         if (Input.GetMouseButtonDown(0))
         {
+            if (showSprayText)
+            {
+                showSprayText = false;
+                grabText.SetActive(false);
+                sprayText.SetActive(true);
+            }
             // Cast a ray from the mouse position to see if it hits the GameObject
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
@@ -80,6 +93,8 @@ public class StinkerSpray : MonoBehaviour
             Vector3 mousePos = _camera.ScreenToWorldPoint(Input.mousePosition);
             //rb.MovePosition(mousePos + _offset);
             rb.velocity = (mousePos + _offset - transform.position) * 20f; // Adjust the multiplier to control the throw speed.
+            
+            SetDirection(rb.velocity.x > 0);
 
             // Scale the object based on its vertical position relative to the screen
             /*float viewportY = _camera.WorldToViewportPoint(transform.position).y;
@@ -136,8 +151,25 @@ public class StinkerSpray : MonoBehaviour
         }
     }
 
+    private void SetDirection(bool left)
+    {
+        facingLeft = left;
+        if (left)
+        {
+            sprayParticles.transform.rotation = Quaternion.Euler(0, 180, 0);
+            sprayBody.localScale = new Vector3(-Mathf.Abs(sprayBody.localScale.x), sprayBody.localScale.y, sprayBody.localScale.z);
+        }
+        else
+        {
+            sprayParticles.transform.rotation = Quaternion.Euler(0, 0, 0);
+            sprayBody.localScale = new Vector3(Mathf.Abs(sprayBody.localScale.x), sprayBody.localScale.y, sprayBody.localScale.z);
+        }
+    }
+
     private void Spray()
     {
+        sprayText.SetActive(false);
+
         //AudioSource.PlayClipAtPoint(spraySound.clip, transform.position, 0.6f);
         spraySound.pitch = Random.Range(1.1f, 1.4f);
         spraySound.PlayOneShot(spraySound.clip);
@@ -149,17 +181,22 @@ public class StinkerSpray : MonoBehaviour
 
     private void SprayRaycast()
     {
+        Vector3 raycastDirection = -raycastSprayFrom.right;
+        if (facingLeft)
+        {
+            raycastDirection = -raycastDirection;
+        }
         float raycastDistance = 1.7f;
-        RaycastHit2D straightHit = Physics2D.Raycast(raycastSprayFrom.position, -raycastSprayFrom.right, raycastDistance);
+        RaycastHit2D straightHit = Physics2D.Raycast(raycastSprayFrom.position, raycastDirection, raycastDistance);
 
         // Raycast 30 degrees upward
         float angleUp = 17f;
-        Vector2 directionUp = Quaternion.Euler(0f, 0f, angleUp) * -transform.right;
+        Vector2 directionUp = Quaternion.Euler(0f, 0f, angleUp) * raycastDirection;
         RaycastHit2D upHit = Physics2D.Raycast(raycastSprayFrom.position, directionUp, raycastDistance);
 
         // Raycast 30 degrees downward
         float angleDown = -17f;
-        Vector2 directionDown = Quaternion.Euler(0f, 0f, angleDown) * -raycastSprayFrom.right;
+        Vector2 directionDown = Quaternion.Euler(0f, 0f, angleDown) * raycastDirection;
         RaycastHit2D downHit = Physics2D.Raycast(raycastSprayFrom.position, directionDown, raycastDistance);
 
         // Draw the rays and perform actions based on the hit information
@@ -174,12 +211,12 @@ public class StinkerSpray : MonoBehaviour
 
         if (upHit.collider)
         {
-            straightHit.collider.TryGetComponent<Stinker>(out comp);
+            upHit.collider.TryGetComponent<Stinker>(out comp);
         }
 
         if (downHit.collider)
         {
-            straightHit.collider.TryGetComponent<Stinker>(out comp);
+            downHit.collider.TryGetComponent<Stinker>(out comp);
         }
 
         if (comp)

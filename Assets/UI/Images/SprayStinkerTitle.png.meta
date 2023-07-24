@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4512789a405d11770a3647100df18ed8
+guid: 0ad322fae44a244a3a00680c7cdf9a5b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,11 +43,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.6807664, y: 0.6032141}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -108,18 +108,84 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: SprayStinkerTitle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 302
+        width: 219
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78c6564361124893f82f7284ad0c8a92
+      internalID: -2006634124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprayStinkerTitle_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 151
+        width: 219
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3096b63d6b822e2ca3b2e95ad603263
+      internalID: 1976660119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprayStinkerTitle_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 219
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2574694be4bc5de8ba272e2cb39a9dce
+      internalID: 599343880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    spriteID: 99a159acab771568fae732a6405f6465
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SprayStinkerTitle_0: -2006634124
+      SprayStinkerTitle_1: 1976660119
+      SprayStinkerTitle_2: 599343880
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

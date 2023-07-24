@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4512789a405d11770a3647100df18ed8
+guid: e08b13c83f0764444b096d6facace92c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,11 +43,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.6807664, y: 0.6032141}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -108,18 +108,106 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Spray_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 84
+        width: 75
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8edce5f4859b414f9e11dbd6c3529f1
+      internalID: 286353367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spray_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 56
+        width: 75
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: faa1df2cd70f5b6459d5fb52249bf5c6
+      internalID: 1260634677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spray_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 28
+        width: 75
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 182936d87dc14ca42bb302949cca1414
+      internalID: 1649099753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spray_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 75
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9007d644b46be024d9c19b5fd06e3b4d
+      internalID: 1556420210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    spriteID: 79b2a2866e7d25e4bb5fff27aeb8001c
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Spray_0: 286353367
+      Spray_1: 1260634677
+      Spray_2: 1649099753
+      Spray_3: 1556420210
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
