@@ -24,7 +24,6 @@ public class RegisterGameManager : MonoBehaviour
     public List<Customer> Customers = new List<Customer>();
     public List<GameObject> GroceryItems = new List<GameObject>();
     public List<GameObject> LinePositions = new List<GameObject>();
-    public List<GameObject> BeltPositions = new List<GameObject>();
     //
     private List<Customer> lineOfCustomers = new List<Customer>();
 
@@ -32,6 +31,13 @@ public class RegisterGameManager : MonoBehaviour
     private int listIndex;
     private int itemIndex;
     private Customer curCustomer;
+    private AudioSource beep;
+    public Bounds spawnBounds;
+
+    private void Start()
+    {
+        beep = GetComponent<AudioSource>();
+    }
 
     private void Awake()
     {
@@ -73,6 +79,7 @@ public class RegisterGameManager : MonoBehaviour
 
     public void ScanItem()
     {
+        beep.PlayOneShot(beep.clip);
         Debug.Log("scanned item");
         curCustomer.numOfItems--;
         if (curCustomer.numOfItems == 0)
@@ -87,9 +94,26 @@ public class RegisterGameManager : MonoBehaviour
         for (int i = 0; i < curCustomer.numOfItems; i++)
         {
             itemIndex = Random.Range(0, GroceryItems.Count);
-            Instantiate(GroceryItems[itemIndex], BeltPositions[i].transform.position,
-                BeltPositions[i].transform.rotation);
+
+            Vector3 spawnPosition = new Vector3(
+                Random.Range(spawnBounds.min.x, spawnBounds.max.x),
+                spawnBounds.max.y,   // Start from the top of the bounds
+                Random.Range(spawnBounds.min.z, spawnBounds.max.z)
+            );
+            RaycastHit hit;
+            if (Physics.Raycast(spawnPosition, Vector3.down, out hit, Mathf.Infinity))
+            {
+                // Place the item at the hit point on the ground
+                GameObject obj = Instantiate(GroceryItems[itemIndex]);
+                obj.GetComponent<Rigidbody>().MovePosition(hit.point + Vector3.up * obj.GetComponent<Collider>().bounds.size.y * 0.5f);
+            }
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(1f, 0.5f, 0.5f, 0.4f);
+        Gizmos.DrawCube(spawnBounds.center, spawnBounds.size);
     }
 
     private void Completed()

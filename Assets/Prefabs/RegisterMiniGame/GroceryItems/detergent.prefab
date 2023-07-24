@@ -601,8 +601,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb1e486b63670a4ca7b0c4ac1f141ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetObject: {fileID: 0}
   rotationSpeed: 15
-  movementSpeed: 2
+  movementSpeed: 15
+  lockPosition: {x: 0, y: 0, z: 0}
+  lockAtAwakePosition: 1
+  freezeRigidbodyZ: 1
 --- !u!1 &8238486726979740448
 GameObject:
   m_ObjectHideFlags: 0
