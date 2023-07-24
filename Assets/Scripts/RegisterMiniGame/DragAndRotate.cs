@@ -6,10 +6,8 @@ using Vector3 = UnityEngine.Vector3;
 public class DragAndRotate : MonoBehaviour
 {
    private Camera cam;
-   private float vectorX, vectorY;
-   private float distanceFromCamera;
-   [SerializeField] private float rotationSpeed = 10f;
-   [SerializeField] private float movementSpeed = 20f;
+   [SerializeField] private float rotationSpeed = 15f;
+   [SerializeField] private float movementSpeed = 15f;
 
    private Rigidbody r;
 
@@ -21,7 +19,6 @@ public class DragAndRotate : MonoBehaviour
    private void Awake()
    {
       cam = Camera.main;
-      distanceFromCamera = Vector3.Distance(transform.position, cam.transform.position);
       r = GetComponent<Rigidbody>();
    }
 
@@ -36,18 +33,18 @@ public class DragAndRotate : MonoBehaviour
          isRotating = false;
       }
 
-      if (framePassed < 3)
+      if (framePassed < 2)
       {
          framePassed++;
-      } else if (framePassed == 3)
+      } else if (framePassed == 2)
       {
-         framePassed = 4;
+         framePassed = 3;
       }
    }
 
    private void FixedUpdate()
    {
-      if (framePassed == 4)
+      if (framePassed == 3)
       {
          if (isDragging && isRotating)
          {
@@ -55,13 +52,13 @@ public class DragAndRotate : MonoBehaviour
             float xRotation = Input.GetAxis("Mouse X") * rotationSpeed;
             float yRotation = Input.GetAxis("Mouse Y") * rotationSpeed;
          
-            r.angularVelocity = new Vector3(yRotation, xRotation, 0);
+            r.angularVelocity = new Vector3(yRotation, -xRotation, 0);
             r.velocity = new Vector3(0, 0, 0);
          } else if (isDragging)
          {
             float x = Input.GetAxis("Mouse X") * movementSpeed;
             float y = Input.GetAxis("Mouse Y") * movementSpeed;
-      
+
             r.velocity = new Vector3(x, y, 0);
          }
       }
