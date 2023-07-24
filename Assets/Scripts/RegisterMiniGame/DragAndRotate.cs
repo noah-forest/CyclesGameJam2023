@@ -10,6 +10,7 @@ public class DragAndRotate : MonoBehaviour
    [SerializeField] private float movementSpeed = 15f;
 
    private Rigidbody r;
+   private Vector3 wantedPosition;
 
    private bool isDragging = false;
    private bool isRotating = false;
@@ -53,20 +54,21 @@ public class DragAndRotate : MonoBehaviour
             float yRotation = Input.GetAxis("Mouse Y") * rotationSpeed;
          
             r.angularVelocity = new Vector3(yRotation, -xRotation, 0);
-            r.velocity = new Vector3(0, 0, 0);
+            wantedPosition = new Vector3(0, 0, 0);
          } else if (isDragging)
          {
             float x = Input.GetAxis("Mouse X") * movementSpeed;
             float y = Input.GetAxis("Mouse Y") * movementSpeed;
 
-            r.velocity = new Vector3(x, y, 0);
+            wantedPosition += new Vector3(x, y, 0);
+            r.velocity = (wantedPosition - r.position).normalized * movementSpeed;
          }
       }
    }
 
    private void OnMouseDown()
    {
-      r.useGravity = false;
+      //r.useGravity = false;
       r.constraints = RigidbodyConstraints.FreezePositionZ;
       isDragging = true;
       r.velocity = Vector3.zero;
@@ -76,7 +78,7 @@ public class DragAndRotate : MonoBehaviour
 
    private void OnMouseUp()
    {
-      r.useGravity = true;
+      //r.useGravity = true;
       isDragging = false;
       Cursor.lockState = CursorLockMode.None;
    }
