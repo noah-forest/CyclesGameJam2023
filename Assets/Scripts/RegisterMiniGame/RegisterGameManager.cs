@@ -48,6 +48,7 @@ public class RegisterGameManager : MonoBehaviour
         _instance = this;
         CreateCustomersInLine();
         curCustomer = lineOfCustomers[0];
+        curCustomer.IsBeingServed(true);
         SpawnItems();
     }
 
