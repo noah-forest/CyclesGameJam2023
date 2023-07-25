@@ -6,40 +6,28 @@ using Vector3 = UnityEngine.Vector3;
 
 public class DragAndRotate : MonoBehaviour
 {
-   private Camera cam;
+   protected Camera cam;
    [SerializeField] private float rotationSpeed = 15f;
    [SerializeField] private float movementSpeed = 15f;
 
-   private Rigidbody rb;
+   protected Rigidbody rb;
    private Vector3 wantedPosition;
-
-   public Vector3 lockPosition;
    
+   public bool canRotate = true;
+
    private bool isDragging = false;
    private bool isRotating = false;
 
    private Vector3 startingDragPosition;
    private Vector3 targetPosition;
-   public bool lockAtAwakePosition = false;
-   public bool freezeRigidbodyZ = false;
 
-   private void Awake()
+   public virtual void Awake()
    {
       cam = Camera.main;
       rb = GetComponent<Rigidbody>();
-
-      if (lockAtAwakePosition)
-      {
-         lockPosition = transform.position;
-      }
-
-      if (freezeRigidbodyZ)
-      {
-         rb.constraints = RigidbodyConstraints.FreezePositionZ;
-      }
    }
 
-   private void Update()
+   protected void Update()
    {
       if (isDragging && Input.GetMouseButtonDown(1))
       {
@@ -56,7 +44,7 @@ public class DragAndRotate : MonoBehaviour
 
    private void FixedUpdate()
    {
-         if (isDragging && isRotating)
+         if (canRotate && isDragging && isRotating)
          {
             UpdateRotation();
          } else if (isDragging)
@@ -77,21 +65,20 @@ public class DragAndRotate : MonoBehaviour
 
    private void UpdatePosition()
    {
-      if (GetMousePositionOnPlane(out targetPosition))
+      if (GetTargetPosition(out targetPosition))
       {
          rb.velocity = (targetPosition + startingDragPosition - transform.position) * movementSpeed;
       }
    }
 
-   public bool GetMousePositionOnPlane(out Vector3 position)
+   protected virtual bool GetTargetPosition(out Vector3 position)
    {
+      RaycastHit hit;
       Ray mouseRay = cam.ScreenPointToRay(Input.mousePosition);
-      Plane plane = new Plane(Vector3.forward, lockPosition);
 
-      float rayDistance;
-      if (plane.Raycast(mouseRay, out rayDistance))
+      if (Physics.Raycast(mouseRay, out hit))
       {
-         position = mouseRay.GetPoint(rayDistance);
+         position = hit.point;
          return true;
       }
 
@@ -101,7 +88,7 @@ public class DragAndRotate : MonoBehaviour
 
    private void SetStartingDragPosition()
    {
-      GetMousePositionOnPlane(out startingDragPosition);
+      GetTargetPosition(out startingDragPosition);
       startingDragPosition = rb.position - startingDragPosition;
    }
 
@@ -116,11 +103,5 @@ public class DragAndRotate : MonoBehaviour
    {
       rb.useGravity = true;
       isDragging = false;
-   }
-
-   private void OnDrawGizmosSelected()
-   {
-      Gizmos.DrawCube(lockPosition, new Vector3(1f, 1f, 0.02f));
-      Gizmos.DrawLine(lockPosition,lockPosition + Vector3.forward * 2);
    }
 }

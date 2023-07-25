@@ -260,7 +260,8 @@ GameObject:
   - component: {fileID: 48068033116769955}
   - component: {fileID: 22459917906912932}
   - component: {fileID: 5494222256891292557}
-  - component: {fileID: 4199573595713829526}
+  - component: {fileID: 4145714107538928288}
+  - component: {fileID: 7614588399537562481}
   m_Layer: 0
   m_Name: pasta_sauce
   m_TagString: Untagged
@@ -335,7 +336,25 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!114 &4199573595713829526
+--- !u!114 &4145714107538928288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8382650653053558402}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba97f6319ef410f4db170eea2a9be377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 15
+  movementSpeed: 15
+  lockPosition: {x: 0, y: 0, z: 0}
+  lockPosition: {x: 0, y: 0, z: 0}
+  lockAtAwakePosition: 1
+  freezeRigidbodyZ: 0
+--- !u!114 &7614588399537562481
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -347,12 +366,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb1e486b63670a4ca7b0c4ac1f141ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 0}
   rotationSpeed: 15
   movementSpeed: 15
   lockPosition: {x: 0, y: 0, z: 0}
-  lockAtAwakePosition: 1
-  freezeRigidbodyZ: 1
 --- !u!1001 &7985117599236674483
 PrefabInstance:
   m_ObjectHideFlags: 0
