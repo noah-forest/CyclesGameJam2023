@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ScannerCheck : MonoBehaviour
@@ -13,6 +14,8 @@ public class ScannerCheck : MonoBehaviour
     private GameObject scanner;
     private bool hasBeenScanned;
 
+    public float rayDistance = 0.05f;
+
     private void Start()
     {
         gameManager = RegisterGameManager.Instance;
@@ -20,9 +23,9 @@ public class ScannerCheck : MonoBehaviour
 
     private void Update()
     {
-        Ray ray = new Ray(transform.position, transform.up*-1);
+        Ray ray = new Ray(transform.position, -transform.up);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 0.03f, scanMask, QueryTriggerInteraction.UseGlobal))
+        if (Physics.Raycast(ray, out hit, rayDistance, scanMask))
         {
             if (hit.transform.CompareTag("Scanner") && !hasBeenScanned)
             {
@@ -32,5 +35,10 @@ public class ScannerCheck : MonoBehaviour
         }
 
         Debug.DrawRay(ray.origin, ray.direction, Color.cyan);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawLine(transform.position, transform.position - transform.up * rayDistance);
     }
 }
