@@ -8,12 +8,19 @@ public class DragAndRotateLockedAxis : DragAndRotate
    public bool lockAtAwakePosition = false;
    public bool freezeRigidbodyZ = false;
 
+   public Vector3 planePosition = Vector3.zero;
+   public Quaternion rotation = Quaternion.identity;
+   public Vector3 PlaneNormal
+   {
+      get { return rotation * Vector3.forward; }
+   }
    public override void Awake()
    {
       base.Awake();
       if (lockAtAwakePosition)
       {
-         lockPosition = transform.position;
+         //lockPosition = transform.position;
+         planePosition = transform.position;
       }
       if (freezeRigidbodyZ)
       {
@@ -24,7 +31,7 @@ public class DragAndRotateLockedAxis : DragAndRotate
    protected override bool GetTargetPosition(out Vector3 position)
    {
       Ray mouseRay = cam.ScreenPointToRay(Input.mousePosition);
-      Plane plane = new Plane(Vector3.forward, lockPosition);
+      Plane plane = new Plane(PlaneNormal, planePosition);
 
       float rayDistance;
       if (plane.Raycast(mouseRay, out rayDistance))
@@ -37,9 +44,9 @@ public class DragAndRotateLockedAxis : DragAndRotate
       return false;
    }
 
-   private void OnDrawGizmosSelected()
+   /*private void OnDrawGizmosSelected()
    {
       Gizmos.DrawCube(lockPosition, new Vector3(1f, 1f, 0.02f));
       Gizmos.DrawLine(lockPosition,lockPosition + Vector3.forward * 2);
-   }
+   }*/
 }
