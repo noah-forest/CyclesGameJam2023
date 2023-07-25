@@ -23,6 +23,7 @@ public class RegisterGameManager : MonoBehaviour
     }
 
     public List<Customer> Customers = new List<Customer>();
+    public List<GameObject> SpeechBubbles = new List<GameObject>();
     public List<GameObject> GroceryItems = new List<GameObject>();
     public List<GameObject> LinePositions = new List<GameObject>();
     //
@@ -32,12 +33,15 @@ public class RegisterGameManager : MonoBehaviour
     private int listIndex;
     private int itemIndex;
     private Customer curCustomer;
+    private int speechIndex;
     private AudioSource beep;
     public Bounds spawnBounds;
 
     public TextMeshPro scanText;
     private int recentScanCount = 0;
-        
+
+    private bool willSpeak;
+    
     private void Start()
     {
         beep = GetComponent<AudioSource>();
@@ -49,6 +53,7 @@ public class RegisterGameManager : MonoBehaviour
         CreateCustomersInLine();
         curCustomer = lineOfCustomers[0];
         curCustomer.IsBeingServed(true);
+        PickRandomSpeechBubble();
         SpawnItems();
     }
 
@@ -68,6 +73,7 @@ public class RegisterGameManager : MonoBehaviour
     private void UpdateCustomerLine()
     {
         lineOfCustomers.Remove(curCustomer);
+        SpeechBubbles[speechIndex].gameObject.SetActive(false);
         curCustomer.FinishedBeingServed();
         //Destroy(curCustomer.gameObject);
         if (lineOfCustomers.Count <= 0)
@@ -84,6 +90,7 @@ public class RegisterGameManager : MonoBehaviour
             //lineOfCustomers[i].transform.position = LinePositions[i].transform.position;
         }
         curCustomer.IsBeingServed(true);
+        PickRandomSpeechBubble();
     }
 
     IEnumerator SetScanColor(float delay)
@@ -127,7 +134,7 @@ public class RegisterGameManager : MonoBehaviour
             {
                 // Place the item at the hit point on the ground
                 GameObject obj = Instantiate(GroceryItems[itemIndex]);
-                obj.GetComponent<Rigidbody>().MovePosition(hit.point + Vector3.up * obj.GetComponent<Collider>().bounds.size.y * 0.5f);
+                obj.GetComponent<Rigidbody>().MovePosition(hit.point + Vector3.up * (obj.GetComponent<Collider>().bounds.size.y * 0.5f));
             }
         }
     }
@@ -142,4 +149,23 @@ public class RegisterGameManager : MonoBehaviour
     {
         scanText.SetText("Finished!");
     }
+
+    private void PickRandomSpeechBubble()
+    {
+        int randomNum = Random.Range(0, 3);
+        if (randomNum == 0) willSpeak = true;
+        else willSpeak = false;
+        
+        Debug.Log(randomNum);
+        
+        if(!willSpeak) return;
+
+        for (int i = 0; i < SpeechBubbles.Count; i++)
+        {
+            speechIndex = Random.Range(0, SpeechBubbles.Count);
+        }
+        SpeechBubbles[speechIndex].gameObject.SetActive(true);
+    }
+    
+    
 }
