@@ -58,6 +58,7 @@ public class RegisterGameManager : MonoBehaviour
         {
             listIndex = Random.Range(0, Customers.Count);
             Customer cus = Instantiate(Customers[listIndex], LinePositions[i].transform.position, LinePositions[i].transform.rotation);
+            cus.MoveTo(LinePositions[i].transform.position);
             cus.numOfItems = Random.Range(1, 4);
             lineOfCustomers.Add(cus);
         }
@@ -66,7 +67,8 @@ public class RegisterGameManager : MonoBehaviour
     private void UpdateCustomerLine()
     {
         lineOfCustomers.Remove(curCustomer);
-        Destroy(curCustomer.gameObject);
+        curCustomer.FinishedBeingServed();
+        //Destroy(curCustomer.gameObject);
         if (lineOfCustomers.Count <= 0)
         {
             Completed();
@@ -77,8 +79,10 @@ public class RegisterGameManager : MonoBehaviour
         SpawnItems();
         for (int i = 0; i < lineOfCustomers.Count; i++)
         {
-            lineOfCustomers[i].transform.position = LinePositions[i].transform.position;
+            lineOfCustomers[i].MoveTo(LinePositions[i].transform.position);
+            //lineOfCustomers[i].transform.position = LinePositions[i].transform.position;
         }
+        curCustomer.IsBeingServed(true);
     }
 
     IEnumerator SetScanColor(float delay)
