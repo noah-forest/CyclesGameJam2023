@@ -7,7 +7,6 @@ using Vector3 = UnityEngine.Vector3;
 public class DragAndRotate : MonoBehaviour
 {
    private Camera cam;
-   public GameObject targetObject;
    [SerializeField] private float rotationSpeed = 15f;
    [SerializeField] private float movementSpeed = 15f;
 

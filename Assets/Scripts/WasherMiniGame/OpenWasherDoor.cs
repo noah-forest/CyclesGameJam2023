@@ -10,6 +10,11 @@ public class OpenWasherDoor : MonoBehaviour
     public Transform pivot;
     public Transform originalPivot;
     public GameObject WashingMachine;
+    public GameObject light;
+
+    private Material baseMaterial;
+    public Material wipMaterial;
+    
     
     private Transform Door;
 
@@ -35,6 +40,7 @@ public class OpenWasherDoor : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
+        baseMaterial = light.GetComponent<MeshRenderer>().material;
         washerAnim = WashingMachine.GetComponent<Animator>();
     }
 
@@ -73,11 +79,13 @@ public class OpenWasherDoor : MonoBehaviour
             // play animation of washer rattling lol
             washerAnim.ResetTrigger("PauseWashing");
             washerAnim.SetTrigger("Washing");
+            light.GetComponent<MeshRenderer>().material = wipMaterial;
         }
         else
         {
             washerAnim.SetTrigger("PauseWashing");
             washerAnim.ResetTrigger("Washing");
+            light.GetComponent<MeshRenderer>().material = baseMaterial;
         }
 
         if (washTimer >= timeToWash)
@@ -88,6 +96,7 @@ public class OpenWasherDoor : MonoBehaviour
             washerAnim.ResetTrigger("Washing");
             ResetTimer();
             OpenDoor(Door);
+            //light.GetComponent<MeshRenderer>().material = baseMaterial;
         }
     }
 
