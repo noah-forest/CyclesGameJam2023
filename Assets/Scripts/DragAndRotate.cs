@@ -32,6 +32,7 @@ public class DragAndRotate : MonoBehaviour
       if (isDragging && Input.GetMouseButtonDown(1))
       {
          isRotating = true;
+         if (!canRotate) return;
          Cursor.lockState = CursorLockMode.Locked;
       }
       else if (isRotating && Input.GetMouseButtonUp(1))

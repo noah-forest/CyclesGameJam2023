@@ -65,7 +65,7 @@ public class RegisterGameManager : MonoBehaviour
             listIndex = Random.Range(0, Customers.Count);
             Customer cus = Instantiate(Customers[listIndex], LinePositions[i].transform.position, LinePositions[i].transform.rotation);
             cus.MoveTo(LinePositions[i].transform.position);
-            cus.numOfItems = Random.Range(1, 4);
+            cus.numOfItems = Random.Range(1, 5);
             lineOfCustomers.Add(cus);
         }
     }
