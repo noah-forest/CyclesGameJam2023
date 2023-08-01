@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public Image timerBar;
+
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI cashText;
     public TextMeshProUGUI livesText;
-
-
+    public GameManager gameManager;
 
     public void UpdateTimerUI(float time)
     {
@@ -19,6 +21,7 @@ public class UIManager : MonoBehaviour
         if (fraction > 9) fraction = 0;
 
         timerText.text = string.Format("{0:00}:{1:00}.{2:0}", minutes, seconds, fraction);
+        timerBar.fillAmount = time / gameManager.maxTime;
     }
 
     public void UpdateCashUI(float amt)

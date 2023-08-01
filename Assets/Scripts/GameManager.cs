@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public static Minigame currentMinigame = null;
 
     private bool gameFinished = false;
+    private bool gameFailed = false;
 
     public UIManager uiManager;
     public TextMeshPro gameText;
@@ -26,8 +27,8 @@ public class GameManager : MonoBehaviour
     {
         set
         {
-            uiManager.UpdateCashUI(value);
             _cash = value;
+            uiManager.UpdateCashUI(_lives);
         }
         get => _cash;
     }
@@ -36,27 +37,33 @@ public class GameManager : MonoBehaviour
     {
         set
         {
-            uiManager.UpdateLives(value);
+            
             _lives = value;
+            uiManager.UpdateLives(_lives);
         }
         get => _lives;
     }
-
-    public float _currentTime;
+    /// <summary>
+    /// counts down
+    /// </summary>
+    private float _currentTime;
     public float currentTime
     {
         set
         {
-            uiManager.UpdateTimerUI(value);
             _currentTime = value;
+            uiManager.UpdateTimerUI(_currentTime);
+            
         }
         get => _currentTime;
     }
     public float maxTime;
 
-
     private void Awake()
     {
+        lives = 3;
+        cash = 0;
+
         if (singleton)
         {
             Destroy(this.gameObject);
@@ -72,24 +79,25 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (gameFailed || gameFinished) return;
         currentTime -= Time.deltaTime;
+        if (currentTime <= 0) FailMiniGame();
     }
 
     public void LoadScene(Minigame minigame)
     {
         SceneManager.LoadScene(minigame.scene.name);
         currentMinigame = minigame;
+        currentTime = currentMinigame.timerLength;
         maxTime = currentMinigame.timerLength;
-        GameObject textObj = GameObject.FindGameObjectWithTag("GameText");
-        if(textObj) gameText = textObj.GetComponent<TextMeshPro>();
-
-
+        Cursor.lockState = CursorLockMode.Confined;// unlock cursor incase it was locked by previous minigame when it ended.
     }
 
     public void LoadRandomScene()
     {
         LoadScene(games[Random.Range(0, games.Length)]);
         gameFinished = false;
+        gameFailed = false;
     }
 
     IEnumerator DelayFinished()
@@ -111,7 +119,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void FinishMiniGame()
     {
-        if (gameFinished)
+        if (gameFinished || gameFailed)
         {
             return;
         }
@@ -122,9 +130,14 @@ public class GameManager : MonoBehaviour
 
     public void FailMiniGame()
     {
+        gameFailed = true;
+        currentTime = 0;
+        GameObject textObj = GameObject.FindGameObjectWithTag("GameText");
+        if (textObj) gameText = textObj.GetComponent<TextMeshPro>();
         if (gameText)
         {
             gameText.text = "FAILURE";
+            gameText.color = Color.red;
         }
 
         AddCash(-currentMinigame.cashPenalty); // subract pentalty
@@ -150,5 +163,17 @@ public class GameManager : MonoBehaviour
             return;
         }
         cash += amt; // oh yeah baby
+    }
+
+    public void AddTime(float time)
+    {
+        if(currentTime + time < 0)
+        {
+            currentTime = 0;
+        }
+        else if (currentTime + time > maxTime)
+        {
+            currentTime = maxTime;
+        }
     }
 }

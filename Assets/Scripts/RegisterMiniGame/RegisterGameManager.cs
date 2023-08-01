@@ -91,7 +91,10 @@ public class RegisterGameManager : MonoBehaviour
         }
         curCustomer.IsBeingServed(true);
         PickRandomSpeechBubble();
+
+        GameManager.singleton.AddTime(5);
     }
+
 
     IEnumerator SetScanColor(float delay)
     {
