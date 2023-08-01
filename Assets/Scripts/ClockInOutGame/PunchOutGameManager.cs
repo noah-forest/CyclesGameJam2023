@@ -41,7 +41,6 @@ public class PunchOutGameManager : MonoBehaviour
         if (scanCount >= scanTarget)
         {
             finished = true;
-            screenText.SetText("Success!");
             _audioSource.PlayOneShot(beep);
             screenText.color = Color.green;
             GameManager.singleton.FinishMiniGame();

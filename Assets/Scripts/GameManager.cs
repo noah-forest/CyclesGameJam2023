@@ -16,8 +16,8 @@ public class GameManager : MonoBehaviour
     public static GameManager singleton;
     public static Minigame currentMinigame = null;
 
-    private bool gameFinished = false;
-    private bool gameFailed = false;
+    public bool gameFinished { private set; get; }
+    public bool gameFailed { private set; get; }
 
     public UIManager uiManager;
     public TextMeshPro gameText;
@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
         set
         {
             _cash = value;
-            uiManager.UpdateCashUI(_lives);
+            uiManager.UpdateCashUI(_cash);
         }
         get => _cash;
     }
@@ -124,21 +124,18 @@ public class GameManager : MonoBehaviour
             return;
         }
         gameFinished = true;
-        StartCoroutine(DelayFinished());
+        SetGameText("Success!", Color.green);
         AddCash(currentMinigame.cashReward);
+        StartCoroutine(DelayFinished());
+
     }
 
     public void FailMiniGame()
     {
         gameFailed = true;
         currentTime = 0;
-        GameObject textObj = GameObject.FindGameObjectWithTag("GameText");
-        if (textObj) gameText = textObj.GetComponent<TextMeshPro>();
-        if (gameText)
-        {
-            gameText.text = "FAILURE";
-            gameText.color = Color.red;
-        }
+
+        SetGameText("FAILURE", Color.red);
 
         AddCash(-currentMinigame.cashPenalty); // subract pentalty
         --lives;
@@ -162,6 +159,7 @@ public class GameManager : MonoBehaviour
             cash = 0;
             return;
         }
+        Debug.Log("Got cash");
         cash += amt; // oh yeah baby
     }
 
@@ -174,6 +172,20 @@ public class GameManager : MonoBehaviour
         else if (currentTime + time > maxTime)
         {
             currentTime = maxTime;
+        }
+    }
+
+    public void SetGameText(string text, Color color)
+    {
+        if (!gameText)
+        {
+            GameObject textObj = GameObject.FindGameObjectWithTag("GameText");
+            if (textObj) gameText = textObj.GetComponent<TextMeshPro>();
+        }
+        if (gameText)
+        {
+            gameText.text = text;
+            gameText.color = color;
         }
     }
 }

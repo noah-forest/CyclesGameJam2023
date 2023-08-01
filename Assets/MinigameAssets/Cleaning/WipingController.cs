@@ -142,8 +142,6 @@ public class WipingController : MonoBehaviour
             var percent = (dirtAmount / originalDirtAmount) * 100;
             if (percent < 5)
             {
-                text.SetText("Finished!");
-                text.color = Color.green;
                 GameManager.singleton.FinishMiniGame();
             }
         }

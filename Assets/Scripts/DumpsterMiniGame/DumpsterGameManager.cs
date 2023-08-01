@@ -41,8 +41,6 @@ public class DumpsterGameManager : MonoBehaviour
 
     public void Completed()
     {
-        objText.SetText("Finished!");
-        objText.color = Color.green;
         GameManager.singleton.FinishMiniGame();
     }
 }

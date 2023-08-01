@@ -92,7 +92,8 @@ public class RegisterGameManager : MonoBehaviour
         curCustomer.IsBeingServed(true);
         PickRandomSpeechBubble();
 
-        GameManager.singleton.AddTime(5);
+        GameManager.singleton.AddTime(7);
+        GameManager.singleton.AddCash(100);
     }
 
 
@@ -110,6 +111,7 @@ public class RegisterGameManager : MonoBehaviour
 
     public void ScanItem()
     {
+        if (GameManager.singleton.gameFinished || GameManager.singleton.gameFailed) return;
         StartCoroutine(SetScanColor(1));
         beep.PlayOneShot(beep.clip);
         Debug.Log("scanned item");
@@ -150,7 +152,6 @@ public class RegisterGameManager : MonoBehaviour
 
     private void Completed()
     {
-        scanText.SetText("Finished!");
         GameManager.singleton.FinishMiniGame();
     }
 
