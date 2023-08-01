@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEditor.Media;
 using UnityEngine;
@@ -22,7 +23,8 @@ public class WipingController : MonoBehaviour
     public int brushSize = 50;
 
     public TextMeshPro text;
-
+    public List<int> pixelsToCheck = new List<int>();
+    
     private void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
@@ -37,6 +39,7 @@ public class WipingController : MonoBehaviour
             {
                 // Set the pixel to white.
                 pixels[i] = Color.white;
+                pixelsToCheck.Add(i);
             }
         }
         maskClone.SetPixels(pixels);
@@ -49,6 +52,7 @@ public class WipingController : MonoBehaviour
         Texture2D scaledTexture = Bilinear(brush, brushSize, brushSize);
 
         brush = scaledTexture;
+        
         originalDirtAmount = ReadDirtCount();
         StartCoroutine(WaitForFinished());
     }
@@ -114,9 +118,16 @@ public class WipingController : MonoBehaviour
     {
         dirtAmount = 0;
         Color[] pixels = maskTexture.GetPixels();
-        foreach (Color pixel in pixels)
+        
+        for (int i = 0; i < pixelsToCheck.Count; i++)
         {
-            dirtAmount += pixel.g;
+            var g = pixels[pixelsToCheck[i]].g;
+            if (g < 0.2f)
+            {
+                pixelsToCheck.RemoveAt(i);
+                i--;
+            }
+            dirtAmount += g;
         }
 
         return dirtAmount;
@@ -126,7 +137,7 @@ public class WipingController : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
             ReadDirtCount();
             var percent = (dirtAmount / originalDirtAmount) * 100;
             if (percent < 5)
