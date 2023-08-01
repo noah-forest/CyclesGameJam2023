@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
         if (singleton)
         {
             Destroy(this.gameObject);
+            return;
         }
         singleton = this;
         DontDestroyOnLoad(this.gameObject);
