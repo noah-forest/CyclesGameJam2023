@@ -3,15 +3,17 @@ using System.Threading;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
 
-    public MiniGameData loadingScene;
-    public MiniGameData startingGame;
-    public MiniGameData[] games;
-    public MiniGameData currentScene = null;
+    public Minigame loadingScene;
+    public Minigame startingGame;
+    public Minigame[] games;
+    
     public static GameManager singleton;
+    public static Minigame currentMinigame = null;
 
     private bool gameFinished = false;
 
@@ -31,10 +33,10 @@ public class GameManager : MonoBehaviour
         LoadScene(startingGame);
     }
 
-    public void LoadScene(MiniGameData minigame)
+    public void LoadScene(Minigame minigame)
     {
         SceneManager.LoadScene(minigame.scene.name);
-        currentScene = minigame;
+        currentMinigame = minigame;
     }
 
     public void LoadRandomScene()

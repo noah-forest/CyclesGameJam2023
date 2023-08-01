@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [CreateAssetMenu(fileName = "MiniGameData", menuName = "MiniGame")]
-public class MiniGameData : ScriptableObject
+public class Minigame : ScriptableObject
 {
     public Object scene;
     public string name;
