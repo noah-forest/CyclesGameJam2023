@@ -15,6 +15,14 @@ public class GameManager : MonoBehaviour
 
     private bool gameFinished = false;
 
+
+    public float cash;
+    public int lives;
+    public int time;
+
+
+
+
     private void Awake()
     {
         if (singleton)
