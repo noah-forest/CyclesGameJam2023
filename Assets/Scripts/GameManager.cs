@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Threading;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -5,28 +7,58 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
-    public SceneAsset originalScene;
+    public Object loadingScene;
+    public Object startingGame;
+    public Object[] games;
+    public Object currentScene = null;
+    public static GameManager singleton;
 
-    public static GameManager gameManager;
+    private bool gameFinished = false;
 
     private void Awake()
     {
-        if (gameManager)
+        if (singleton)
         {
             Destroy(this.gameObject);
         }
-        gameManager = this;
+        singleton = this;
         DontDestroyOnLoad(this.gameObject);
+        LoadScene(startingGame);
     }
 
-    public void LoadMiniGame(MiniGameData data)
+    public void LoadScene(Object scene)
     {
-        SceneManager.LoadScene(data.miniGameScene.name);
+        SceneManager.LoadScene(scene.name);
+        currentScene = scene;
+    }
+
+    public void LoadRandomScene()
+    {
+        LoadScene(games[Random.Range(0, games.Length)]);
+        gameFinished = false;
+    }
+
+    IEnumerator DelayFinished()
+    {
+        yield return new WaitForSeconds(1.5f);
+        LoadRandomScene();
+        /*if (currentScene == loadingScene)
+        {
+            LoadRandomScene();
+        }
+        else
+        {
+            LoadScene(loadingScene);
+        }*/
     }
 
     public void FinishMiniGame()
     {
-        SceneManager.LoadScene(originalScene.name);
-        
+        if (gameFinished)
+        {
+            return;
+        }
+        gameFinished = true;
+        StartCoroutine(DelayFinished());
     }
 }

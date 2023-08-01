@@ -44,6 +44,7 @@ public class PunchOutGameManager : MonoBehaviour
             screenText.SetText("Success!");
             _audioSource.PlayOneShot(beep);
             screenText.color = Color.green;
+            GameManager.singleton.FinishMiniGame();
         }
         else
         {

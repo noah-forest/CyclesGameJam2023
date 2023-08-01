@@ -71,6 +71,7 @@ public class Bike : MonoBehaviour
         if (progress >= endProgress)
         {
             progress = Mathf.Clamp(progress, 0, endProgress);
+            GameManager.singleton.FinishMiniGame();
             Debug.Log("Game Over - You Win!");
         }
 
@@ -82,7 +83,7 @@ public class Bike : MonoBehaviour
 
     private void UpdateEffortBar()
     {
-        float speedPercent = speed / 100;
+        float speedPercent = speed / maxSpeed;
         Vector2 sizeDelta = effortBar.sizeDelta;
         sizeDelta.x = effortPanel.rect.width * speedPercent;
         effortBar.sizeDelta = sizeDelta;

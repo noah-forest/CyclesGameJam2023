@@ -44,4 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e5695575887084aa746c6ea95fbcf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalScene: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
+  loadingScene: {fileID: 102900000, guid: 0527ed8cafb64b845bdede396bd23e09, type: 3}
+  startingGame: {fileID: 102900000, guid: b6c5fd72849684842bd66a53871c0c2c, type: 3}
+  games:
+  - {fileID: 102900000, guid: 7a8c4fdd43474b54ea83856c2547dc30, type: 3}
+  currentScene: {fileID: 0}

@@ -9,7 +9,7 @@ public class MiniGameTest : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            GameManager.gameManager.FinishMiniGame();
+            GameManager.singleton.FinishMiniGame();
         }
     }
 }

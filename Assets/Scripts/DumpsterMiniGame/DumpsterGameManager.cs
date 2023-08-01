@@ -27,8 +27,6 @@ public class DumpsterGameManager : MonoBehaviour
     public List<GameObject> trashBags = new List<GameObject>();
     public List<Transform> spawnLocations = new List<Transform>();
 
-    private GameManager _gameManager;
-    
     public int numOfObjects;
 
     private int trashIndex;
@@ -39,7 +37,6 @@ public class DumpsterGameManager : MonoBehaviour
     private void Awake()
     {
         numOfObjects = Random.Range(1, 4);
-        _gameManager = GameManager.gameManager;
     }
 
     private void Start()
@@ -56,12 +53,6 @@ public class DumpsterGameManager : MonoBehaviour
     {
         objText.SetText("Finished!");
         objText.color = Color.green;
-        StartCoroutine(Wait());
-    }
-
-    private IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(2f);
-        _gameManager.FinishMiniGame();
+        GameManager.singleton.FinishMiniGame();
     }
 }

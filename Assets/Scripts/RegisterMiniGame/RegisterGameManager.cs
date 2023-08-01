@@ -148,6 +148,7 @@ public class RegisterGameManager : MonoBehaviour
     private void Completed()
     {
         scanText.SetText("Finished!");
+        GameManager.singleton.FinishMiniGame();
     }
 
     private void PickRandomSpeechBubble()

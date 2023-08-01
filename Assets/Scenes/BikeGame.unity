@@ -1146,7 +1146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficulty: 0.35
-  endProgress: 100
+  endProgress: 30
   animationMultiplier: 0.033
   maxSpeed: 100
   effortPanel: {fileID: 867756872}

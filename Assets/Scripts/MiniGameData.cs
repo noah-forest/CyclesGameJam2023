@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 [CreateAssetMenu(fileName = "MiniGameData", menuName = "MiniGame")]
 public class MiniGameData : ScriptableObject
 {
-    public string gameName;
+    public Object scene;
+    public string name;
     public string description;
-    public Scene miniGameScene;
     
     // bring data back
 }
