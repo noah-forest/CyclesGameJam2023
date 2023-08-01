@@ -138,6 +138,7 @@ public class Stinker : MonoBehaviour
         {
             Instantiate(chad, transform.position, chad.transform.rotation);
             Destroy(this.gameObject);
+            GameManager.singleton.FinishMiniGame();
         }
 
     }

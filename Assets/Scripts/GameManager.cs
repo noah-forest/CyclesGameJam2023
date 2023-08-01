@@ -7,21 +7,17 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
-    public Object loadingScene;
-    public Object startingGame;
-    public Object[] games;
-    public Object currentScene = null;
+    public MiniGameData loadingScene;
+    public MiniGameData startingGame;
+    public MiniGameData[] games;
+    public MiniGameData currentScene = null;
     public static GameManager singleton;
 
     private bool gameFinished = false;
 
-
     public float cash;
     public int lives;
     public int time;
-
-
-
 
     private void Awake()
     {
@@ -35,10 +31,10 @@ public class GameManager : MonoBehaviour
         LoadScene(startingGame);
     }
 
-    public void LoadScene(Object scene)
+    public void LoadScene(MiniGameData minigame)
     {
-        SceneManager.LoadScene(scene.name);
-        currentScene = scene;
+        SceneManager.LoadScene(minigame.scene.name);
+        currentScene = minigame;
     }
 
     public void LoadRandomScene()
