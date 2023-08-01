@@ -6,14 +6,9 @@ using UnityEngine;
 
 public class WaitForContents : MonoBehaviour
 {
-    private DumpsterGameManager gm;
+    public DumpsterGameManager gm;
     
     private int count;
-
-    private void Start()
-    {
-        gm = DumpsterGameManager.Instance;
-    }
 
     private void OnTriggerEnter(Collider other)
     {

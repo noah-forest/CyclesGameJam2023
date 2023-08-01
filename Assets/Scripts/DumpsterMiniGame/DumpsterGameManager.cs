@@ -8,18 +8,7 @@ using Random = UnityEngine.Random;
 
 public class DumpsterGameManager : MonoBehaviour
 {
-    private static DumpsterGameManager _instance;
-    public static DumpsterGameManager Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = FindFirstObjectByType<DumpsterGameManager>();
-            }
-            return _instance;
-        }
-    }
+    public static DumpsterGameManager singleton;
     
     
     public TextMeshPro objText;
@@ -36,6 +25,7 @@ public class DumpsterGameManager : MonoBehaviour
     
     private void Awake()
     {
+        singleton = this;
         numOfObjects = Random.Range(1, 4);
     }
 
