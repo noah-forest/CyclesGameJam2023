@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEditor.Media;
 using UnityEngine;
 
@@ -19,6 +20,8 @@ public class WipingController : MonoBehaviour
     private float originalDirtAmount = 0;
 
     public int brushSize = 50;
+
+    public TextMeshPro text;
 
     private void Start()
     {
@@ -113,7 +116,6 @@ public class WipingController : MonoBehaviour
         Color[] pixels = maskTexture.GetPixels();
         foreach (Color pixel in pixels)
         {
-                
             dirtAmount += pixel.g;
         }
 
@@ -129,6 +131,8 @@ public class WipingController : MonoBehaviour
             var percent = (dirtAmount / originalDirtAmount) * 100;
             if (percent < 5)
             {
+                text.SetText("Finished!");
+                text.color = Color.green;
                 GameManager.singleton.FinishMiniGame();
             }
         }
