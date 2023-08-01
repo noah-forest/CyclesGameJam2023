@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Threading;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,9 +18,42 @@ public class GameManager : MonoBehaviour
 
     private bool gameFinished = false;
 
-    public float cash;
-    public int lives;
-    public int time;
+    public UIManager uiManager;
+    public TextMeshPro gameText;
+
+    private float _cash;
+    public float cash
+    {
+        set
+        {
+            uiManager.UpdateCashUI(value);
+            _cash = value;
+        }
+        get => _cash;
+    }
+    private int _lives;
+    public int lives
+    {
+        set
+        {
+            uiManager.UpdateLives(value);
+            _lives = value;
+        }
+        get => _lives;
+    }
+
+    public float _currentTime;
+    public float currentTime
+    {
+        set
+        {
+            uiManager.UpdateTimerUI(value);
+            _currentTime = value;
+        }
+        get => _currentTime;
+    }
+    public float maxTime;
+
 
     private void Awake()
     {
@@ -31,12 +65,25 @@ public class GameManager : MonoBehaviour
         singleton = this;
         DontDestroyOnLoad(this.gameObject);
         LoadScene(startingGame);
+
+
+        
+    }
+
+    private void Update()
+    {
+        currentTime -= Time.deltaTime;
     }
 
     public void LoadScene(Minigame minigame)
     {
         SceneManager.LoadScene(minigame.scene.name);
         currentMinigame = minigame;
+        maxTime = currentMinigame.timerLength;
+        GameObject textObj = GameObject.FindGameObjectWithTag("GameText");
+        if(textObj) gameText = textObj.GetComponent<TextMeshPro>();
+
+
     }
 
     public void LoadRandomScene()
@@ -59,6 +106,9 @@ public class GameManager : MonoBehaviour
         }*/
     }
 
+    /// <summary>
+    /// called by minigames when they are completed.
+    /// </summary>
     public void FinishMiniGame()
     {
         if (gameFinished)
@@ -67,5 +117,38 @@ public class GameManager : MonoBehaviour
         }
         gameFinished = true;
         StartCoroutine(DelayFinished());
+        AddCash(currentMinigame.cashReward);
+    }
+
+    public void FailMiniGame()
+    {
+        if (gameText)
+        {
+            gameText.text = "FAILURE";
+        }
+
+        AddCash(-currentMinigame.cashPenalty); // subract pentalty
+        --lives;
+
+        if (lives <= 0)
+        {
+            //game over
+
+        }
+        else
+        {
+            StartCoroutine(DelayFinished());
+        }
+    }
+
+
+    public void AddCash(float amt)
+    {
+        if (cash + amt < 0)
+        {
+            cash = 0;
+            return;
+        }
+        cash += amt; // oh yeah baby
     }
 }

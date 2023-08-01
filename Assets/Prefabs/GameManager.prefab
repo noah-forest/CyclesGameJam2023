@@ -186,7 +186,10 @@ MonoBehaviour:
   startingGame: {fileID: 102900000, guid: b6c5fd72849684842bd66a53871c0c2c, type: 3}
   games:
   - {fileID: 102900000, guid: 7a8c4fdd43474b54ea83856c2547dc30, type: 3}
-  currentScene: {fileID: 0}
+  uiManager: {fileID: 2320834493917097230}
+  gameText: {fileID: 0}
+  _currentTime: 0
+  maxTime: 0
 --- !u!114 &2320834493917097230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +202,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a73ae017fe3f64f4fb42518e31129a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerText: {fileID: 2624897611413228927}
+  cashText: {fileID: 3474805234879286404}
+  livesText: {fileID: 2837582516726188227}
 --- !u!1 &6283139833432639587
 GameObject:
   m_ObjectHideFlags: 0
