@@ -176,7 +176,6 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void FinishMiniGame()
     {
-        StopAllCoroutines();
         if (gameFinished || gameFailed)
         {
             return;
@@ -192,7 +191,10 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void FailMiniGame()
     {
-        StopAllCoroutines();
+        if (gameFinished || gameFailed)
+        {
+            return;
+        }
         gameFailed = true;
         currentTime = 0;
 
