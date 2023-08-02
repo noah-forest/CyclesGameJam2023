@@ -15,3 +15,6 @@ MonoBehaviour:
   scene: {fileID: 102900000, guid: 92bcfd5710ec1df4fa81b15dc3c62e27, type: 3}
   name: Stocking
   description: 
+  timerLength: 5
+  cashReward: 100
+  cashPenalty: 0

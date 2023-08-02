@@ -15,3 +15,6 @@ MonoBehaviour:
   scene: {fileID: 102900000, guid: b6c5fd72849684842bd66a53871c0c2c, type: 3}
   name: Clock In
   description: 
+  timerLength: 10
+  cashReward: 100
+  cashPenalty: 0

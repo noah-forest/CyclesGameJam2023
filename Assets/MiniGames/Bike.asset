@@ -15,3 +15,6 @@ MonoBehaviour:
   scene: {fileID: 102900000, guid: 0527ed8cafb64b845bdede396bd23e09, type: 3}
   name: Bike
   description: 
+  timerLength: 6.5
+  cashReward: 100
+  cashPenalty: 0

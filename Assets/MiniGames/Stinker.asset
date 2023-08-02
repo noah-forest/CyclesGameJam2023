@@ -15,3 +15,6 @@ MonoBehaviour:
   scene: {fileID: 102900000, guid: dd553e133ab59fe7c8edce886755bf88, type: 3}
   name: Spray the Stinker
   description: 
+  timerLength: 5
+  cashReward: 200
+  cashPenalty: 0

@@ -15,3 +15,6 @@ MonoBehaviour:
   scene: {fileID: 102900000, guid: 7a8c4fdd43474b54ea83856c2547dc30, type: 3}
   name: Cash Register
   description: 
+  timerLength: 12
+  cashReward: 300
+  cashPenalty: 0

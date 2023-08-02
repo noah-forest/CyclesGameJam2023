@@ -15,3 +15,6 @@ MonoBehaviour:
   scene: {fileID: 102900000, guid: 861a0976a3fe5b64780d9952f9d18e3f, type: 3}
   name: Clean Laundry
   description: 
+  timerLength: 5
+  cashReward: 100
+  cashPenalty: 0
