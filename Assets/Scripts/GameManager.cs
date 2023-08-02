@@ -180,6 +180,7 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
+        StopAllCoroutines();
         gameFinished = true;
         SetGameText("Success!", Color.green);
         AddCash(currentMinigame.cashReward);
@@ -195,6 +196,7 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
+        StopAllCoroutines();
         gameFailed = true;
         currentTime = 0;
 
