@@ -15,7 +15,7 @@ MonoBehaviour:
   scene: {fileID: 102900000, guid: f10442b45b91b4d4a8c262d391dfa813, type: 3}
   name: Clean the Spill
   description: 
-  timerLength: 4
+  timerLength: 5
   cashReward: 100
   cashPenalty: 0
   playMax: 3
