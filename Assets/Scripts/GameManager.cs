@@ -222,13 +222,17 @@ public class GameManager : MonoBehaviour
 
     public void AddTime(float time)
     {
-        if(currentTime + time < 0)
+        if (currentTime + time < 0)
         {
             currentTime = 0;
         }
         else if (currentTime + time > maxTime)
         {
             currentTime = maxTime;
+        }
+        else
+        {
+            currentTime += time;
         }
     }
 
