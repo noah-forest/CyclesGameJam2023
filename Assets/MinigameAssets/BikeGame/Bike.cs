@@ -19,7 +19,7 @@ public class Bike : MonoBehaviour
     private float speed = 0.0f;
     private float progress = 0.0f;
     private bool isSpamming = false;
-    private KeyCode[] sequence = new KeyCode[] { KeyCode.A, KeyCode.D };
+    private KeyCode[] sequence = new KeyCode[] { KeyCode.Mouse0, KeyCode.Mouse1 };
     private int currentIndex = 0;
     private float lastButtonPressTime = 0.0f;
 
