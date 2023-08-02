@@ -10,8 +10,8 @@ public class Bike : MonoBehaviour
 {
     [HeaderAttribute("Lower = Higher Difficulty")]
     public float difficulty = 0.5f; // Lower values increase the difficulty
-    public float maxDiffuclty = 2;
-    public float minDifficulty = 0.8f;
+    public float maxDiffuclty = 1;
+    public float minDifficulty = 0.4f;
     public float endProgress = 100000.0f; // Value at which the game ends
     public float animationMultiplier = 1;
     public float maxSpeed = 100;
