@@ -18,3 +18,4 @@ MonoBehaviour:
   timerLength: 12
   cashReward: 300
   cashPenalty: 0
+  playMax: 4
