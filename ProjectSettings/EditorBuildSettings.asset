@@ -6,24 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/WipeMiniGame.unity
+    path: Assets/Scenes/Minigames/WipeMiniGame.unity
     guid: f10442b45b91b4d4a8c262d391dfa813
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/BikeGame.unity
+    path: Assets/Scenes/Minigames/BikeGame.unity
     guid: 0527ed8cafb64b845bdede396bd23e09
   - enabled: 1
-    path: Assets/Scenes/ClockInOutGame.unity
+    path: Assets/Scenes/Minigames/ClockInOutGame.unity
     guid: b6c5fd72849684842bd66a53871c0c2c
   - enabled: 1
-    path: Assets/Scenes/RegisterMiniGame.unity
+    path: Assets/Scenes/Minigames/RegisterMiniGame.unity
     guid: 7a8c4fdd43474b54ea83856c2547dc30
   - enabled: 1
-    path: Assets/Scenes/DumpsterMiniGame.unity
+    path: Assets/Scenes/Minigames/DumpsterMiniGame/DumpsterMiniGame.unity
     guid: 832a0126c73855540a5f3f987db65a66
   - enabled: 1
-    path: Assets/Scenes/StinkerMinigame.unity
+    path: Assets/Scenes/Minigames/StinkerMinigame.unity
     guid: dd553e133ab59fe7c8edce886755bf88
   m_configObjects: {}
