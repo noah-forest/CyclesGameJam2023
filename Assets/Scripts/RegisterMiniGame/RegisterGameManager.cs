@@ -48,10 +48,6 @@ public class RegisterGameManager : MonoBehaviour
     private void Start()
     {
         beep = GetComponent<AudioSource>();
-    }
-
-    private void Awake()
-    {
         _instance = this;
         CreateCustomersInLine();
         curCustomer = lineOfCustomers[0];
@@ -59,7 +55,6 @@ public class RegisterGameManager : MonoBehaviour
         PickRandomSpeechBubble();
         SpawnItems();
     }
-
     private void CreateCustomersInLine()
     {
         numOfCustomers = Random.Range(1, LinePositions.Count+1);

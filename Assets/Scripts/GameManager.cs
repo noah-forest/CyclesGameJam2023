@@ -9,7 +9,8 @@ using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
-
+    public bool debugMode = false;
+    
     public Minigame loadingScene;
     public Minigame startingGame;
     public Minigame[] games;
@@ -38,7 +39,10 @@ public class GameManager : MonoBehaviour
         set
         {
             _cash = value;
-            uiManager.UpdateCashUI(_cash);
+            if (uiManager)
+            {
+                uiManager.UpdateCashUI(_cash);
+            }
         }
         get => _cash;
     }
@@ -49,7 +53,10 @@ public class GameManager : MonoBehaviour
         {
             
             _lives = value;
-            uiManager.UpdateLives(_lives);
+            if (uiManager)
+            {
+                uiManager.UpdateLives(_lives);
+            }
         }
         get => _lives;
     }
@@ -62,7 +69,10 @@ public class GameManager : MonoBehaviour
         set
         {
             _currentTime = value;
-            uiManager.UpdateTimerUI(_currentTime);
+            if (uiManager)
+            {
+                uiManager.UpdateTimerUI(_currentTime);
+            }
             
         }
         get => _currentTime;
@@ -71,6 +81,10 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        if (debugMode)
+        {
+            currentTime = 1000;
+        }
         lives = 3;
         cash = 0;
 
@@ -85,14 +99,14 @@ public class GameManager : MonoBehaviour
             playTracker.Add(mg, 0);
             totalMaxPlays += mg.playMax;
         }
-        Debug.Log(totalMaxPlays);
-
-
-
-
+        
         singleton = this;
         DontDestroyOnLoad(this.gameObject);
-        LoadScene(startingGame);
+
+        if (startingGame)
+        {
+            LoadScene(startingGame);
+        }
     }
 
     private void Update()
@@ -126,7 +140,7 @@ public class GameManager : MonoBehaviour
             ++playTracker[currentMinigame];
             ++totalPlays;
         }
-        Debug.Log(totalPlays);
+        
         Minigame nextGame;
         if (totalPlays >= totalMaxPlays) // game cycle complete
         {
@@ -150,10 +164,6 @@ public class GameManager : MonoBehaviour
         LoadScene(nextGame);
         gameFinished = false;
         gameFailed = false;
-
-
-
-
     }
 
     IEnumerator DelayFinished()
@@ -200,9 +210,12 @@ public class GameManager : MonoBehaviour
         gameFailed = true;
         currentTime = 0;
 
-        SetGameText("FAILURE", Color.red);
+        SetGameText("Failed!", Color.red);
 
-        AddCash(-currentMinigame.cashPenalty); // subract pentalty
+        if (currentMinigame)
+        {
+            AddCash(-currentMinigame.cashPenalty); // subract pentalty
+        }
         --lives;
 
         if (lives <= 0)
