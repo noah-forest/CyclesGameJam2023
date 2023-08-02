@@ -21,6 +21,8 @@ public class RegisterGameManager : MonoBehaviour
             return _instance;
         }
     }
+    [SerializeField] private int maxItemsPerCust = 2;
+    [SerializeField] private int maxItemsCap = 5;
 
     public List<Customer> Customers = new List<Customer>();
     public List<GameObject> SpeechBubbles = new List<GameObject>();
@@ -30,8 +32,7 @@ public class RegisterGameManager : MonoBehaviour
     private List<Customer> lineOfCustomers = new List<Customer>();
 
     private int numOfCustomers;
-    private int maxItemsPerCust = 3;
-    private int maxItemsCap = 7;
+
     private int listIndex;
     private int itemIndex;
     private Customer curCustomer;
