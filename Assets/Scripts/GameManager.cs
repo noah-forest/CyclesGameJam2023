@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Threading;
 using TMPro;
 using UnityEditor;
@@ -12,6 +13,15 @@ public class GameManager : MonoBehaviour
     public Minigame loadingScene;
     public Minigame startingGame;
     public Minigame[] games;
+
+    private Dictionary<Minigame, int> playTracker = new Dictionary<Minigame, int>();
+    private int totalPlays = 0;
+    private int totalMaxPlays;
+    /// <summary>
+    /// this goes up each time all games repeat their maximum number of times.
+    /// other games can use it to scale dificulty
+    /// </summary>
+    public int difficulty { private set; get; } 
     
     public static GameManager singleton;
     public static Minigame currentMinigame = null;
@@ -69,12 +79,20 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
+
+        foreach(Minigame mg in games)
+        {
+            playTracker.Add(mg, 0);
+            totalMaxPlays += mg.playMax;
+        }
+        Debug.Log(totalMaxPlays);
+
+
+
+
         singleton = this;
         DontDestroyOnLoad(this.gameObject);
         LoadScene(startingGame);
-
-
-        
     }
 
     private void Update()
@@ -95,9 +113,46 @@ public class GameManager : MonoBehaviour
 
     public void LoadRandomScene()
     {
-        LoadScene(games[Random.Range(0, games.Length)]);
+        float extraPlayChance = Mathf.Clamp(difficulty / 10, 0, 0.5f);
+        float roll = Random.Range(0, 1);
+        if(roll < extraPlayChance)
+        {
+            --playTracker[currentMinigame];
+            --totalPlays;
+        }
+        if (playTracker.ContainsKey(currentMinigame))
+        {
+            ++playTracker[currentMinigame];
+            ++totalPlays;
+        }
+        Debug.Log(totalPlays);
+        Minigame nextGame;
+        if (totalPlays >= totalMaxPlays) // game cycle complete
+        {
+            nextGame = startingGame;
+            foreach(Minigame mg in games) // reset play counts
+            {
+                playTracker[mg] = 0;
+            }
+            totalPlays = 0;
+            ++difficulty; // increase difficulty each time you complete a cycle
+        }
+        else
+        {
+            do
+            {
+                nextGame = games[Random.Range(0, games.Length)];
+            } while (playTracker[nextGame] >= nextGame.playMax); // should probably make this work off a shrinking list instead since this will get slower the less uncompleted games there are.
+
+        }
+
+        LoadScene(nextGame);
         gameFinished = false;
         gameFailed = false;
+
+
+
+
     }
 
     IEnumerator DelayFinished()
@@ -129,7 +184,9 @@ public class GameManager : MonoBehaviour
         StartCoroutine(DelayFinished());
 
     }
-
+    /// <summary>
+    /// called if you run out of time
+    /// </summary>
     public void FailMiniGame()
     {
         gameFailed = true;
@@ -160,7 +217,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         Debug.Log("Got cash");
-        cash += amt; // oh yeah baby
+        cash += amt + difficulty * 10; // oh yeah baby
     }
 
     public void AddTime(float time)

@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class Bike : MonoBehaviour
 {
     [HeaderAttribute("Lower = Higher Difficulty")]
-    public float difficulty = 0.5f; // Higher values increase the difficulty
+    public float difficulty = 0.5f; // Lower values increase the difficulty
+    public float maxDiffuclty = 1;
+    public float minDifficulty = 0.4f;
     public float endProgress = 100000.0f; // Value at which the game ends
     public float animationMultiplier = 1;
     public float maxSpeed = 100;
@@ -33,6 +36,8 @@ public class Bike : MonoBehaviour
     {
         effortBarImage = effortBar.GetComponent<Image>();
         animator = GetComponent<Animator>();
+        float diffMod = 1/(GameManager.singleton.difficulty + 1);
+        difficulty = Random.Range(minDifficulty + diffMod, maxDiffuclty);
     }
 
     private void Update()

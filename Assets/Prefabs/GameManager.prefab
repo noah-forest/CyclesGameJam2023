@@ -170,7 +170,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -99.00012, y: 94.499985}
+  m_AnchoredPosition: {x: -99.00012, y: 978}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3165132107686076656
@@ -264,6 +264,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 93fc88d96c41f7e4491f436d99d636dd, type: 2}
   - {fileID: 11400000, guid: eca4faf9b49dd9041b42bc1ab2a4ba79, type: 2}
   - {fileID: 11400000, guid: 05c8982d3b3b1bf48a626003c20974b3, type: 2}
+  - {fileID: 11400000, guid: 8653b226a39d0da45b1ddd02d8ebb608, type: 2}
   uiManager: {fileID: 2320834493917097230}
   gameText: {fileID: 0}
   maxTime: 0
@@ -295,6 +296,7 @@ GameObject:
   - component: {fileID: 2722004634255035488}
   - component: {fileID: 4889369461195280534}
   - component: {fileID: 2837582516726188227}
+  - component: {fileID: 3320551494646309866}
   m_Layer: 5
   m_Name: LivesCounter
   m_TagString: Untagged
@@ -318,7 +320,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -30, y: -33}
+  m_AnchoredPosition: {x: -1770, y: -33}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4889369461195280534
@@ -413,12 +415,29 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 16.227173, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3320551494646309866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6283139833432639587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e91b8f6860cd840b43906d43750c85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fonts:
+  - {fileID: 11400000, guid: 5a9a782d2042f7b4e952e8980e6939c5, type: 2}
+  - {fileID: 11400000, guid: 3abb7cd2aeafab14581cfa76766d71c8, type: 2}
+  - {fileID: 11400000, guid: 3a999834a3b56e146b6a1973f2a63b65, type: 2}
+  framesPerSecond: 5
 --- !u!1 &6314008775952374842
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,6 +629,7 @@ GameObject:
   - component: {fileID: 2239129070000008067}
   - component: {fileID: 8797206237872837937}
   - component: {fileID: 3474805234879286404}
+  - component: {fileID: 7262904157504807254}
   m_Layer: 5
   m_Name: CashCounter
   m_TagString: Untagged
@@ -633,7 +653,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 118, y: -38}
+  m_AnchoredPosition: {x: 400, y: -39.6}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8797206237872837937
@@ -734,3 +754,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7262904157504807254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8971799835800259518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e91b8f6860cd840b43906d43750c85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fonts:
+  - {fileID: 11400000, guid: 3abb7cd2aeafab14581cfa76766d71c8, type: 2}
+  - {fileID: 11400000, guid: 5a9a782d2042f7b4e952e8980e6939c5, type: 2}
+  - {fileID: 11400000, guid: 3a999834a3b56e146b6a1973f2a63b65, type: 2}
+  framesPerSecond: 5

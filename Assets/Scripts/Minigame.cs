@@ -12,5 +12,6 @@ public class Minigame : ScriptableObject
     public float timerLength = 2000;
     public float cashReward;
     public float cashPenalty;
+    public int playMax = 2;
     // bring data back
 }

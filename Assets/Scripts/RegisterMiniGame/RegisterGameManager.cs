@@ -30,6 +30,8 @@ public class RegisterGameManager : MonoBehaviour
     private List<Customer> lineOfCustomers = new List<Customer>();
 
     private int numOfCustomers;
+    private int maxItemsPerCust = 3;
+    private int maxItemsCap = 7;
     private int listIndex;
     private int itemIndex;
     private Customer curCustomer;
@@ -65,7 +67,9 @@ public class RegisterGameManager : MonoBehaviour
             listIndex = Random.Range(0, Customers.Count);
             Customer cus = Instantiate(Customers[listIndex], LinePositions[i].transform.position, LinePositions[i].transform.rotation);
             cus.MoveTo(LinePositions[i].transform.position);
-            cus.numOfItems = Random.Range(1, 5);
+
+            cus.numOfItems = Random.Range(1, maxItemsPerCust + GameManager.singleton.difficulty);
+            cus.numOfItems = Mathf.Clamp(cus.numOfItems, 1, maxItemsCap);
             lineOfCustomers.Add(cus);
         }
     }
