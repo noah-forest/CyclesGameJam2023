@@ -15,3 +15,6 @@ MonoBehaviour:
   scene: {fileID: 102900000, guid: 832a0126c73855540a5f3f987db65a66, type: 3}
   name: Dumpster Throw
   description: 
+  timerLength: 5
+  cashReward: 100
+  cashPenalty: 0
