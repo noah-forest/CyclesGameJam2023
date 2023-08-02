@@ -113,6 +113,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadRandomScene()
     {
+        StopAllCoroutines();
         float extraPlayChance = Mathf.Clamp(difficulty / 10, 0, 0.5f);
         float roll = Random.Range(0, 1);
         if(roll < extraPlayChance)
@@ -159,6 +160,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         LoadRandomScene();
+        
         /*if (currentScene == loadingScene)
         {
             LoadRandomScene();
@@ -174,6 +176,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void FinishMiniGame()
     {
+        StopAllCoroutines();
         if (gameFinished || gameFailed)
         {
             return;
@@ -189,6 +192,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void FailMiniGame()
     {
+        StopAllCoroutines();
         gameFailed = true;
         currentTime = 0;
 
