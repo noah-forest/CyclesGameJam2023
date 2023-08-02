@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 124488047386271065}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.012, y: 1.28, z: -4.599}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4.007369, y: 4.007369, z: 4.007369}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -58,7 +58,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.050122727, y: 0.044419948, z: 0.05052045}
-  m_Center: {x: 0.00014668502, y: 0.021800144, z: 0.000058840593}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4121401117249891244
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -133,7 +133,7 @@ Transform:
   m_GameObject: {fileID: 1539841893894110347}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 3.7526406e-15, y: 0.021875, z: -1.110223e-16}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -216,7 +216,7 @@ Transform:
   m_GameObject: {fileID: 6169934870601678892}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 3.7526406e-15, y: 0.021875, z: -1.110223e-16}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -299,7 +299,7 @@ Transform:
   m_GameObject: {fileID: 6942755791706428653}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 3.7526406e-15, y: 0.021875, z: -1.110223e-16}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -376,7 +376,7 @@ PrefabInstance:
     - target: {fileID: 9009629651815789250, guid: df5648703966a6242a9b7e9265f3750a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0213
+      value: -0.0006
       objectReference: {fileID: 0}
     - target: {fileID: 9009629651815789250, guid: df5648703966a6242a9b7e9265f3750a,
         type: 3}
