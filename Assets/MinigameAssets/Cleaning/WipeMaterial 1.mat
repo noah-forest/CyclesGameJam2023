@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WipeMaterial
+  m_Name: WipeMaterial 1
   m_Shader: {fileID: -6465566751694194690, guid: adb078c156b26ef40b1a6c463554144e,
     type: 3}
   m_Parent: {fileID: 0}
@@ -38,11 +38,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _DirtTex:
-        m_Texture: {fileID: 2800000, guid: 9bf0dd14af0ab184b8dbe8d0a1f5c985, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3733ebea9cd63e747966732d2f5eda5b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 9bf0dd14af0ab184b8dbe8d0a1f5c985, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3733ebea9cd63e747966732d2f5eda5b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
