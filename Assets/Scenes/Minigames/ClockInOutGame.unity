@@ -1420,7 +1420,8 @@ AudioSource:
   m_GameObject: {fileID: 1616613905}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 0b97734ba92b05146a9803a88a5a2b63,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -1632,7 +1633,7 @@ MonoBehaviour:
   m_text: Swipe!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5a9a782d2042f7b4e952e8980e6939c5, type: 2}
-  m_sharedMaterial: {fileID: -3123145092248967241, guid: 5a9a782d2042f7b4e952e8980e6939c5,
+  m_sharedMaterial: {fileID: 5483411604070718266, guid: 5a9a782d2042f7b4e952e8980e6939c5,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1722,7 +1723,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3123145092248967241, guid: 5a9a782d2042f7b4e952e8980e6939c5, type: 2}
+  - {fileID: 5483411604070718266, guid: 5a9a782d2042f7b4e952e8980e6939c5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
