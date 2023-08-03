@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
 
         timerText.text = string.Format("{0:00}:{1:00}.{2:0}", minutes, seconds, fraction);
         timerBar.fillAmount = time / gameManager.maxTime;
+        if(time <= gameManager.maxTime / 3) TimerLow();
     }
 
     public void UpdateCashUI(float amt)
@@ -33,5 +34,10 @@ public class UIManager : MonoBehaviour
     public void UpdateLives(int numberOfLives)
     {
         livesText.text = $"Lives: {numberOfLives}";
+    }
+
+    private void TimerLow()
+    {
+        timerText.color = Color.red;
     }
 }
