@@ -150,7 +150,7 @@ Transform:
   m_GameObject: {fileID: 165319343}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.6, y: -0.37, z: 0}
+  m_LocalPosition: {x: 9.6, y: 0.33, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -436,7 +436,7 @@ PrefabInstance:
     - target: {fileID: 8573692270003067327, guid: 16ebd430c3b48f5499386ecaaa18a08b,
         type: 3}
       propertyPath: m_text
-      value: PEDAL
+      value: Pedal!
       objectReference: {fileID: 0}
     - target: {fileID: 8573692270003067327, guid: 16ebd430c3b48f5499386ecaaa18a08b,
         type: 3}
@@ -463,6 +463,12 @@ PrefabInstance:
       propertyPath: m_fontColor.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8573692270003067327, guid: 16ebd430c3b48f5499386ecaaa18a08b,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 5483411604070718266, guid: 5a9a782d2042f7b4e952e8980e6939c5,
+        type: 2}
     - target: {fileID: 8573692270003067327, guid: 16ebd430c3b48f5499386ecaaa18a08b,
         type: 3}
       propertyPath: m_fontColor32.rgba
@@ -1047,7 +1053,7 @@ MonoBehaviour:
   m_text: Progress
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5a9a782d2042f7b4e952e8980e6939c5, type: 2}
-  m_sharedMaterial: {fileID: -3123145092248967241, guid: 5a9a782d2042f7b4e952e8980e6939c5,
+  m_sharedMaterial: {fileID: 5483411604070718266, guid: 5a9a782d2042f7b4e952e8980e6939c5,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1331,7 +1337,7 @@ Transform:
   m_GameObject: {fileID: 1387188451}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.32, y: -0.37, z: 0}
+  m_LocalPosition: {x: -13.32, y: 0.33, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1731,7 +1737,7 @@ MonoBehaviour:
   m_text: Effort
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5a9a782d2042f7b4e952e8980e6939c5, type: 2}
-  m_sharedMaterial: {fileID: -3123145092248967241, guid: 5a9a782d2042f7b4e952e8980e6939c5,
+  m_sharedMaterial: {fileID: 5483411604070718266, guid: 5a9a782d2042f7b4e952e8980e6939c5,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

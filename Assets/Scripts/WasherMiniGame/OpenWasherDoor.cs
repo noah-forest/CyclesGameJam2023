@@ -6,18 +6,10 @@ using UnityEngine.Serialization;
 
 public class OpenWasherDoor : MonoBehaviour
 {
-    private static OpenWasherDoor _singleton;
-    public static OpenWasherDoor LaundryMananger
-    {
-        get
-        {
-            if (_singleton == null) _singleton = FindFirstObjectByType<OpenWasherDoor>();
-            return _singleton;
-        }
-        private set => _singleton = value;
-    }
+    public static OpenWasherDoor singleton;
 
-
+    public GameObject targetText;
+    
     public Transform pivot;
     public Transform originalPivot;
     public GameObject WashingMachine;
@@ -48,10 +40,13 @@ public class OpenWasherDoor : MonoBehaviour
     private bool canStart = false;
     private bool washing = false;
 
+    public Transform door;
+
     // Start is called before the first frame update
     void Start()
     {
-        _singleton = this;
+        OpenDoor();
+        singleton = this;
         cam = Camera.main;
         baseMaterial = light.GetComponent<MeshRenderer>().material;
         washerAnim = WashingMachine.GetComponent<Animator>();
@@ -62,18 +57,22 @@ public class OpenWasherDoor : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            if (targetText)
+            {
+                Destroy(targetText);
+                targetText = null;
+            }
             ray = cam.ScreenPointToRay(Input.mousePosition);
             
             // open and close washer door
             if (Physics.Raycast(ray, out hit, 100f, DoorLayerMask))
             {
-                Door = hit.transform;
                 if (!hasBeenOpened)
                 {
-                    OpenDoor(Door);
+                    OpenDoor();
                     washing = false;
                 }
-                else CloseDoor(Door);
+                else CloseDoor();
             }
             
             // start the washer
@@ -113,12 +112,12 @@ public class OpenWasherDoor : MonoBehaviour
             washerAnim.SetTrigger("PauseWashing");
             washerAnim.ResetTrigger("Washing");
             ResetTimer();
-            OpenDoor(Door);
+            OpenDoor();
             //light.GetComponent<MeshRenderer>().material = baseMaterial;
         }
     }
 
-    private void OpenDoor(Transform door)
+    private void OpenDoor()
     {
         door.SetPositionAndRotation(pivot.localPosition, pivot.localRotation);
         hasBeenOpened = true;
@@ -126,7 +125,7 @@ public class OpenWasherDoor : MonoBehaviour
         washing = false;
     }
 
-    private void CloseDoor(Transform door)
+    private void CloseDoor()
     {
         door.SetPositionAndRotation(originalPivot.localPosition, originalPivot.localRotation);
         hasBeenOpened = false;
