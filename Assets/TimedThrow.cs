@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class TimedThrow : MonoBehaviour
 {
@@ -26,12 +27,13 @@ public class TimedThrow : MonoBehaviour
     
     void Start()
     {
-        ++OpenWasherDoor.LaundryMananger.numOfItems;
+        ++OpenWasherDoor.singleton.numOfItems;
         originalPosition = transform.position;
         originalRotation = transform.rotation;
         rb = GetComponent<Rigidbody>();
         maxAngle = angle / 2;
         minAngle = -angle / 2;
+        Reset();
     }
 
 
@@ -61,30 +63,41 @@ public class TimedThrow : MonoBehaviour
     {
         if (!thrown)
         {
-            currentAngle = currentAngle + speed * Time.deltaTime; //Mathf.Clamp(, maxAngle, minAngle);
-            if (currentAngle > maxAngle+0.02f || currentAngle < minAngle-0.02f)
-            {
-                currentAngle = Mathf.Clamp(currentAngle, minAngle, maxAngle);
-                speed = -speed;
-            }
-            transform.rotation = Quaternion.Euler(0, currentAngle, 0);
+            Rotate();
         }
 
         if (Input.GetMouseButtonDown(0) && !thrown && canThrow)
         {
-            canThrow = false;
-            thrown = true;
-            arrow.SetActive(false);
-            rb.useGravity = true;
-            rb.AddForce(transform.TransformDirection(throwForce), ForceMode.VelocityChange);
+            Throw();
         }
+    }
+
+    private void Rotate()
+    {
+        currentAngle = currentAngle + speed * Time.deltaTime; //Mathf.Clamp(, maxAngle, minAngle);
+        if (currentAngle > maxAngle+0.02f || currentAngle < minAngle-0.02f)
+        {
+            currentAngle = Mathf.Clamp(currentAngle, minAngle, maxAngle);
+            speed = -speed;
+        }
+        transform.rotation = Quaternion.Euler(0, currentAngle, 0);
+    }
+    
+    private void Throw()
+    {
+        canThrow = false;
+        thrown = true;
+        arrow.SetActive(false);
+        rb.useGravity = true;
+        rb.AddForce(transform.TransformDirection(throwForce), ForceMode.VelocityChange);
+        rb.AddTorque(new Vector3(Random.Range(-50, 50), Random.Range(-50, 50), Random.Range(-50, 50)));
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "Goal")
         {
-            --OpenWasherDoor.LaundryMananger.numOfItems;
+            --OpenWasherDoor.singleton.numOfItems;
             // win!!11
         }
     }
