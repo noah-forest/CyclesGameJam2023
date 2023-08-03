@@ -38,7 +38,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateCashUI(float amt)
     {
-        cashText.text = $"$: {amt}";
+        cashText.text = $"Score: {amt}";
     }
 
 
