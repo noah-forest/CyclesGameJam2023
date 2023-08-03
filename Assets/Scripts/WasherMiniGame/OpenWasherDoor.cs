@@ -6,9 +6,11 @@ using UnityEngine.Serialization;
 
 public class OpenWasherDoor : MonoBehaviour
 {
-    public static OpenWasherDoor singleton;
-
+    public GameObject[] objects;
+    
     public GameObject targetText;
+    public GameObject closeDoorIndicator;
+    public GameObject pressButtonIndicator;
     
     public Transform pivot;
     public Transform originalPivot;
@@ -45,11 +47,32 @@ public class OpenWasherDoor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SpawnRandomObject();
         OpenDoor();
-        singleton = this;
         cam = Camera.main;
         baseMaterial = light.GetComponent<MeshRenderer>().material;
         washerAnim = WashingMachine.GetComponent<Animator>();
+    }
+
+    void SpawnRandomObject()
+    {
+        GameObject obj = Instantiate(objects[Random.Range(0, objects.Length)], transform.position + new Vector3(Random.Range(-150f, 150f)/100f, 0, 0), Quaternion.identity);
+        obj.SetActive(true);
+        TimedThrow timedThrow = obj.GetComponent<TimedThrow>();
+        
+        timedThrow.HitGoal.AddListener(() =>
+        {
+            numOfItems -= 1;
+            timedThrow.HitGoal.RemoveAllListeners();
+            if (numOfItems > 0)
+            {
+                SpawnRandomObject();
+            }
+            else
+            {
+                closeDoorIndicator.SetActive(true);
+            }
+        });
     }
 
     // Update is called once per frame
@@ -127,6 +150,8 @@ public class OpenWasherDoor : MonoBehaviour
 
     private void CloseDoor()
     {
+        closeDoorIndicator.SetActive(false);
+        pressButtonIndicator.SetActive(true);
         door.SetPositionAndRotation(originalPivot.localPosition, originalPivot.localRotation);
         hasBeenOpened = false;
         canStart = true;
@@ -134,6 +159,7 @@ public class OpenWasherDoor : MonoBehaviour
     
     private void StartWasher(Transform button)
     {
+        pressButtonIndicator.SetActive(false);
         buttonAnim = button.GetComponent<Animator>();
         buttonAnim.SetTrigger("WasherStart");
         canStart = false;

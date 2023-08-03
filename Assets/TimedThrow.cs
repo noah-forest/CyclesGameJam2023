@@ -3,10 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public class TimedThrow : MonoBehaviour
 {
+    public UnityEvent HitGoal = new UnityEvent();
+    
     public float speed = 0.5f;
     public float angle = 80;
     public GameObject arrow;
@@ -24,10 +27,11 @@ public class TimedThrow : MonoBehaviour
     private Vector3 originalPosition;
     private Quaternion originalRotation;
 
+    private bool inGoal = false;
+    private bool isResetting = false;
     
     void Start()
     {
-        ++OpenWasherDoor.singleton.numOfItems;
         originalPosition = transform.position;
         originalRotation = transform.rotation;
         rb = GetComponent<Rigidbody>();
@@ -39,16 +43,32 @@ public class TimedThrow : MonoBehaviour
 
     IEnumerator ResetThrown()
     {
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
+        for (int i = 0; i < 30; i++)
+        {
+            yield return new WaitForEndOfFrame();
+        }
         transform.position = originalPosition;
         transform.rotation = originalRotation;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         canThrow = true;
     }
-    void Reset()
+    
+    IEnumerator DelayedReset()
     {
+        if (!isResetting)
+        {
+            isResetting = true;
+            yield return new WaitForSeconds(2);
+            if (!inGoal)
+            {
+                Reset();
+            }
+        }
+    }
+    public void Reset()
+    {
+        isResetting = false;
         arrow.SetActive(true);
         rb.useGravity = false;
         rb.velocity = Vector3.zero;
@@ -95,15 +115,25 @@ public class TimedThrow : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Goal")
+        if (!inGoal && other.gameObject.name == "Goal")
         {
-            --OpenWasherDoor.singleton.numOfItems;
+            inGoal = true;
+            HitGoal.Invoke();
+            //--OpenWasherDoor.singleton.numOfItems;
             // win!!11
+        }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (!inGoal)
+        {
+            StartCoroutine(DelayedReset());
         }
     }
 
     private void OnMouseDown()
     {
-        Reset();
+        //Reset();
     }
 }
