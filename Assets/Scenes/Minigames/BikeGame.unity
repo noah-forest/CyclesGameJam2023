@@ -1905,9 +1905,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b5ecf31c700d441990904b092147b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 0.7
+  difficulty: 0.8
   maxDiffuclty: 1
-  minDifficulty: 0.4
+  minDifficulty: 0.6
   endProgress: 30
   animationMultiplier: 0.033
   maxSpeed: 100
