@@ -1502,6 +1502,7 @@ MonoBehaviour:
   materials:
   - {fileID: 2100000, guid: 4d822347c7e10fe45bd6640f0e35437b, type: 2}
   - {fileID: 2100000, guid: ff12ff399e27d6948bf458f277cbc72c, type: 2}
+  - {fileID: 2100000, guid: dfc81ce9d858853409873c3a92337427, type: 2}
   maskTextureBase: {fileID: 2800000, guid: 3733ebea9cd63e747966732d2f5eda5b, type: 3}
   brush: {fileID: 2800000, guid: 8ae890ae9dc23eb40ba4c6367a283dd6, type: 3}
   brushSize: 30
