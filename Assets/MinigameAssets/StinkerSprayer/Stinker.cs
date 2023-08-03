@@ -1,10 +1,13 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public class Stinker : MonoBehaviour
 {
+    public UnityEvent OnKilled = new UnityEvent();
+    
     public float walkSpeed = 1.5f;
     public float minWalkDuration = 1f;
     public float maxWalkDuration = 3f;
@@ -138,7 +141,7 @@ public class Stinker : MonoBehaviour
         {
             Instantiate(chad, transform.position, chad.transform.rotation);
             Destroy(this.gameObject);
-            GameManager.singleton.FinishMiniGame();
+            OnKilled.Invoke();
         }
 
     }

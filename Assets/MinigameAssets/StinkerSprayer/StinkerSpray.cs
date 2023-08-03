@@ -8,6 +8,10 @@ using Random = UnityEngine.Random;
 
 public class StinkerSpray : MonoBehaviour
 {
+    public GameObject stinker;
+    private int killedStinkers = 0;
+    public int stinkerCount = 2;
+    
     private bool _dragging = false;
     private bool previouslyLetGo = false;
     private Vector3 _offset;
@@ -33,6 +37,21 @@ public class StinkerSpray : MonoBehaviour
 
     void Start()
     {
+        for (int i = 0; i < stinkerCount; i++)
+        {
+            GameObject stink = Instantiate(stinker);
+            stink.SetActive(true);
+            Stinker stinkComponent = stink.GetComponent<Stinker>();
+            stinkComponent.OnKilled.AddListener(() =>
+            {
+                killedStinkers += 1;
+                if (killedStinkers >= stinkerCount)
+                {
+                    GameManager.singleton.FinishMiniGame();
+                }
+                stinkComponent.OnKilled.RemoveAllListeners();
+            });
+        }
         spraySound = GetComponent<AudioSource>();
         _camera = Camera.main;
         rb = GetComponent<Rigidbody2D>();

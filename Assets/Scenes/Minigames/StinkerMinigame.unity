@@ -882,6 +882,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3710f7b1e8ef65b08cb67f3385fd9c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stinker: {fileID: 1435202401}
+  stinkerCount: 3
   sprayParticles: {fileID: 6992630363227577184}
   raycastSprayFrom: {fileID: 3434795008708353320}
   grabText: {fileID: 1946193557688443984}
@@ -1093,6 +1095,12 @@ PrefabInstance:
       propertyPath: m_TagString
       value: GameText
       objectReference: {fileID: 0}
+    - target: {fileID: 6390084212142328146, guid: 16ebd430c3b48f5499386ecaaa18a08b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 5483411604070718266, guid: 5a9a782d2042f7b4e952e8980e6939c5,
+        type: 2}
     - target: {fileID: 8342556494716716637, guid: 16ebd430c3b48f5499386ecaaa18a08b,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1262,6 +1270,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 16ebd430c3b48f5499386ecaaa18a08b, type: 3}
+--- !u!1 &1435202401 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8710171435072113380, guid: f5eb6edcb931a11eda7eca89edf88468,
+    type: 3}
+  m_PrefabInstance: {fileID: 3930586720906220602}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1565376512
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1275,6 +1289,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Text (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6390084212142328146, guid: 16ebd430c3b48f5499386ecaaa18a08b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 5483411604070718266, guid: 5a9a782d2042f7b4e952e8980e6939c5,
+        type: 2}
     - target: {fileID: 8342556494716716637, guid: 16ebd430c3b48f5499386ecaaa18a08b,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2014,6 +2034,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stinker
       objectReference: {fileID: 0}
+    - target: {fileID: 8710171435072113380, guid: f5eb6edcb931a11eda7eca89edf88468,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2032,6 +2057,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Text
       objectReference: {fileID: 0}
+    - target: {fileID: 6390084212142328146, guid: 16ebd430c3b48f5499386ecaaa18a08b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 5483411604070718266, guid: 5a9a782d2042f7b4e952e8980e6939c5,
+        type: 2}
     - target: {fileID: 8342556494716716637, guid: 16ebd430c3b48f5499386ecaaa18a08b,
         type: 3}
       propertyPath: m_Pivot.x
