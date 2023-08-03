@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb2738cb7bad9af448d8fb358f826ad7, type: 3}
   m_Name: Laundry
   m_EditorClassIdentifier: 
-  scene: {fileID: 102900000, guid: 861a0976a3fe5b64780d9952f9d18e3f, type: 3}
+  scene: {fileID: 102900000, guid: 5726226457aa1394fb4f2533e298c090, type: 3}
   name: Clean Laundry
   description: 
-  timerLength: 5
-  cashReward: 100
+  timerLength: 12
+  cashReward: 200
   cashPenalty: 0
+  playMax: 1

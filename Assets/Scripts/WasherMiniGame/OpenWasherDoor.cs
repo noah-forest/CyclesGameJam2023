@@ -6,6 +6,17 @@ using UnityEngine.Serialization;
 
 public class OpenWasherDoor : MonoBehaviour
 {
+    private static OpenWasherDoor _singleton;
+    public static OpenWasherDoor LaundryMananger
+    {
+        get
+        {
+            if (_singleton == null) _singleton = FindFirstObjectByType<OpenWasherDoor>();
+            return _singleton;
+        }
+        private set => _singleton = value;
+    }
+
 
     public Transform pivot;
     public Transform originalPivot;
@@ -14,7 +25,8 @@ public class OpenWasherDoor : MonoBehaviour
 
     private Material baseMaterial;
     public Material wipMaterial;
-    
+
+    public int numOfItems;
     
     private Transform Door;
 
@@ -39,6 +51,7 @@ public class OpenWasherDoor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _singleton = this;
         cam = Camera.main;
         baseMaterial = light.GetComponent<MeshRenderer>().material;
         washerAnim = WashingMachine.GetComponent<Animator>();
@@ -68,7 +81,12 @@ public class OpenWasherDoor : MonoBehaviour
             {
                 if (!hasBeenOpened && canStart)
                 {
-                    StartWasher(hit.transform);
+                    if (numOfItems <= 0)
+                    {
+                        StartWasher(hit.transform);
+                        GameManager.singleton.FinishMiniGame();
+                    }
+                    
                 }
             }
         }

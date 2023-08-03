@@ -22,9 +22,11 @@ public class TimedThrow : MonoBehaviour
 
     private Vector3 originalPosition;
     private Quaternion originalRotation;
+
     
     void Start()
     {
+        ++OpenWasherDoor.LaundryMananger.numOfItems;
         originalPosition = transform.position;
         originalRotation = transform.rotation;
         rb = GetComponent<Rigidbody>();
@@ -82,7 +84,7 @@ public class TimedThrow : MonoBehaviour
     {
         if (other.gameObject.name == "Goal")
         {
-            
+            --OpenWasherDoor.LaundryMananger.numOfItems;
             // win!!11
         }
     }
