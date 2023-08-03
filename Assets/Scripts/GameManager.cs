@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public Minigame startingGame;
     public Minigame[] games;
 
+    public Animator fadeAnimator;
+
     private Dictionary<Minigame, int> playTracker = new Dictionary<Minigame, int>();
     private int totalPlays = 0;
     private int totalMaxPlays;
@@ -27,8 +29,7 @@ public class GameManager : MonoBehaviour
     public static GameManager singleton;
     public static Minigame currentMinigame = null;
 
-    public bool gameFinished { private set; get; }
-    public bool gameFailed { private set; get; }
+    public bool minigameEnded { private set; get; }
 
     public UIManager uiManager;
     public TextMeshPro gameText;
@@ -60,6 +61,7 @@ public class GameManager : MonoBehaviour
         }
         get => _lives;
     }
+    
     /// <summary>
     /// counts down
     /// </summary>
@@ -93,6 +95,8 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
+        singleton = this;
+        DontDestroyOnLoad(this.gameObject);
 
         foreach(Minigame mg in games)
         {
@@ -100,34 +104,49 @@ public class GameManager : MonoBehaviour
             totalMaxPlays += mg.playMax;
         }
         
-        singleton = this;
-        DontDestroyOnLoad(this.gameObject);
-
         if (startingGame)
         {
-            LoadScene(startingGame);
+            LoadMinigameScene(startingGame);
         }
     }
 
     private void Update()
     {
-        if (gameFailed || gameFinished) return;
-        currentTime -= Time.deltaTime;
-        if (currentTime <= 0) FailMiniGame();
+        if (!minigameEnded)
+        {
+            currentTime -= Time.deltaTime;
+            if (currentTime <= 0)
+            {
+                MinigameTimeout();
+            };
+        };
     }
 
-    public void LoadScene(Minigame minigame)
+    public void LoadMinigameScene(Minigame minigame)
     {
         SceneManager.LoadScene(minigame.scene.name);
         currentMinigame = minigame;
         currentTime = currentMinigame.timerLength;
         maxTime = currentMinigame.timerLength;
+        minigameEnded = false;
         Cursor.lockState = CursorLockMode.Confined;// unlock cursor incase it was locked by previous minigame when it ended.
     }
 
-    public void LoadRandomScene()
+    public void FadeToMinigame(Minigame minigame)
     {
-        StopAllCoroutines();
+        StartCoroutine(FadeToMinigameCoroutine(minigame));
+    }
+
+    IEnumerator FadeToMinigameCoroutine(Minigame minigame)
+    {
+        fadeAnimator.SetBool("Transition", true);
+        yield return new WaitForSeconds(1.5f);
+        LoadMinigameScene(minigame);
+        fadeAnimator.SetBool("Transition", false);
+    }
+
+    public void LoadNextMinigame()
+    {
         float extraPlayChance = Mathf.Clamp(difficulty / 10, 0, 0.5f);
         float roll = Random.Range(0, 1);
         if(roll < extraPlayChance)
@@ -161,24 +180,13 @@ public class GameManager : MonoBehaviour
 
         }
 
-        LoadScene(nextGame);
-        gameFinished = false;
-        gameFailed = false;
+        FadeToMinigame(nextGame);
     }
 
     IEnumerator DelayFinished()
     {
         yield return new WaitForSeconds(1.5f);
-        LoadRandomScene();
-        
-        /*if (currentScene == loadingScene)
-        {
-            LoadRandomScene();
-        }
-        else
-        {
-            LoadScene(loadingScene);
-        }*/
+        LoadNextMinigame();
     }
 
     /// <summary>
@@ -186,50 +194,45 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void FinishMiniGame()
     {
-        if (gameFinished || gameFailed)
+        if (!minigameEnded)
         {
-            return;
+            minigameEnded = true;
+            SetGameText("Success!", Color.green);
+            AddCash(currentMinigame.cashReward);
+            LoadNextMinigame();
         }
-        StopAllCoroutines();
-        gameFinished = true;
-        SetGameText("Success!", Color.green);
-        AddCash(currentMinigame.cashReward);
-        StartCoroutine(DelayFinished());
 
     }
     /// <summary>
     /// called if you run out of time
     /// </summary>
-    public void FailMiniGame()
+    public void MinigameTimeout()
     {
-        if (gameFinished || gameFailed)
+        if (!minigameEnded)
         {
-            return;
-        }
-        StopAllCoroutines();
-        gameFailed = true;
-        currentTime = 0;
+            minigameEnded = true;
+            currentTime = 0;
 
-        SetGameText("Failed!", Color.red);
+            SetGameText("Failed!", Color.red);
 
-        if (currentMinigame)
-        {
-            AddCash(-currentMinigame.cashPenalty); // subract pentalty
-        }
-        --lives;
+            if (currentMinigame)
+            {
+                AddCash(-currentMinigame.cashPenalty); // subract pentalty
+            }
+            --lives;
 
-        if (lives <= 0)
-        {
-            //game over
-
-        }
-        else
-        {
-            StartCoroutine(DelayFinished());
+            if (lives <= 0)
+            {
+                //game over
+            }
+            else
+            {
+                LoadNextMinigame();
+            }
         }
     }
-
-
+    
+    //-- Helper Methods --//
     public void AddCash(float amt)
     {
         if (cash + amt < 0)
