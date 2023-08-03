@@ -21,6 +21,9 @@ public class RegisterGameManager : MonoBehaviour
             return _instance;
         }
     }
+
+    public SetRandomText randomText;
+    
     [SerializeField] private int maxItemsPerCust = 2;
     [SerializeField] private int maxItemsCap = 5;
 
@@ -158,19 +161,22 @@ public class RegisterGameManager : MonoBehaviour
 
     private void PickRandomSpeechBubble()
     {
+        int index = 0;
         int randomNum = Random.Range(0, 3);
         if (randomNum == 0) willSpeak = true;
         else willSpeak = false;
-        
-        Debug.Log(randomNum);
-        
+
         if(!willSpeak) return;
 
         for (int i = 0; i < SpeechBubbles.Count; i++)
         {
             speechIndex = Random.Range(0, SpeechBubbles.Count);
+            index = Random.Range(0, randomText.dialogueChoices.Length);
         }
+        
         SpeechBubbles[speechIndex].gameObject.SetActive(true);
+        var text = SpeechBubbles[speechIndex].gameObject.GetComponentInChildren<TextMeshPro>();
+        text.SetText(randomText.dialogueChoices[index]);
     }
     
     
