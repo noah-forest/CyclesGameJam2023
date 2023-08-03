@@ -77,7 +77,6 @@ public class Bike : MonoBehaviour
         {
             progress = Mathf.Clamp(progress, 0, endProgress);
             GameManager.singleton.FinishMiniGame();
-            Debug.Log("Game Over - You Win!");
         }
 
         Debug.DrawLine(transform.position, transform.position + new Vector3(speed/10f, 0, 0));
