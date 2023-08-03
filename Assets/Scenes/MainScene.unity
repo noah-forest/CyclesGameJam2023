@@ -427,6 +427,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1999015095 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2557264028276997796, guid: c76e99ffca679ea49b933feeded97f80,
+    type: 3}
+  m_PrefabInstance: {fileID: 2152089610684620503}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2152089610684620503
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -435,6 +441,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2320834493917097230, guid: c76e99ffca679ea49b933feeded97f80,
+        type: 3}
+      propertyPath: Audio
+      value: 
+      objectReference: {fileID: 1999015095}
+    - target: {fileID: 2320834493917097230, guid: c76e99ffca679ea49b933feeded97f80,
+        type: 3}
+      propertyPath: timer
+      value: 
+      objectReference: {fileID: 8300000, guid: 2e64d2590af156646bc4da238c9180ff, type: 3}
+    - target: {fileID: 2320834493917097230, guid: c76e99ffca679ea49b933feeded97f80,
+        type: 3}
+      propertyPath: timerLow
+      value: 
+      objectReference: {fileID: 8300000, guid: c880defbd5a474745b1e2fb55c9d39c1, type: 3}
     - target: {fileID: 2837582516726188227, guid: c76e99ffca679ea49b933feeded97f80,
         type: 3}
       propertyPath: m_fontAsset

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,7 +24,16 @@ public class UIManager : MonoBehaviour
 
         timerText.text = string.Format("{0:00}:{1:00}.{2:0}", minutes, seconds, fraction);
         timerBar.fillAmount = time / gameManager.maxTime;
-        if(time <= gameManager.maxTime / 3) TimerLow();
+        //if(time <= gameManager.maxTime / 3) TimerLow();
+
+        if (time > 0 && time <= gameManager.maxTime / 3)
+        {
+            TimerLow();
+        }
+        else
+        {
+            ResetTimerColor();
+        }
     }
 
     public void UpdateCashUI(float amt)
@@ -39,5 +50,10 @@ public class UIManager : MonoBehaviour
     private void TimerLow()
     {
         timerText.color = Color.red;
+    }
+
+    public void ResetTimerColor()
+    {
+        timerText.color = Color.black;
     }
 }
