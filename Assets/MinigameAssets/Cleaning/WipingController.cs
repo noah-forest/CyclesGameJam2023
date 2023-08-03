@@ -27,13 +27,11 @@ public class WipingController : MonoBehaviour
 
     public TextMeshPro text;
     public List<int> pixelsToCheck = new List<int>();
+
+    private float originalSpillSize = 0.3794284f;
     
     private void Start()
     {
-
-
-
-
         meshRenderer = GetComponent<MeshRenderer>();
         meshRenderer.material = materials[Random.Range(0, materials.Length)];
         maskTextureBase = (Texture2D)meshRenderer.material.mainTexture;
@@ -59,9 +57,10 @@ public class WipingController : MonoBehaviour
         maskTexture = maskClone;
         
         maskMaterial.SetTexture("_MaskTex", maskTexture);
-        
-        Texture2D scaledTexture = Bilinear(brush, brushSize, brushSize);
 
+        float brushScale = originalSpillSize/transform.localScale.x;
+        int newBrushSize = Mathf.FloorToInt(brushScale * brushSize);
+        Texture2D scaledTexture = Bilinear(brush, newBrushSize, newBrushSize);
         brush = scaledTexture;
         
         originalDirtAmount = ReadDirtCount();
