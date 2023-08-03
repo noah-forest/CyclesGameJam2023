@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 [CreateAssetMenu(fileName = "MiniGameData", menuName = "MiniGame")]
 public class Minigame : ScriptableObject
 {
-    public Object scene;
+    public string sceneName;
     public string name;
     public string description;
     public float timerLength = 2000;

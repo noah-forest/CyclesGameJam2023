@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadMinigameScene(Minigame minigame)
     {
-        SceneManager.LoadScene(minigame.scene.name);
+        SceneManager.LoadScene(minigame.sceneName);
         currentMinigame = minigame;
         currentTime = currentMinigame.timerLength;
         maxTime = currentMinigame.timerLength;

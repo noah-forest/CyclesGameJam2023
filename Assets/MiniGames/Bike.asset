@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb2738cb7bad9af448d8fb358f826ad7, type: 3}
   m_Name: Bike
   m_EditorClassIdentifier: 
-  scene: {fileID: 102900000, guid: 0527ed8cafb64b845bdede396bd23e09, type: 3}
+  sceneName: BikeGame
   name: Bike
   description: 
   timerLength: 7
