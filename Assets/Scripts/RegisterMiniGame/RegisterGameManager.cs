@@ -111,15 +111,16 @@ public class RegisterGameManager : MonoBehaviour
 
     public void ScanItem()
     {
-        if (GameManager.singleton.gameFinished || GameManager.singleton.gameFailed) return;
-        StartCoroutine(SetScanColor(1));
-        beep.PlayOneShot(beep.clip);
-        Debug.Log("scanned item");
-        curCustomer.numOfItems--;
-        if (curCustomer.numOfItems == 0)
+        if (!GameManager.singleton.minigameEnded)
         {
-            UpdateCustomerLine();
-        }
+            StartCoroutine(SetScanColor(1));
+            beep.PlayOneShot(beep.clip);
+            curCustomer.numOfItems--;
+            if (curCustomer.numOfItems == 0)
+            {
+                UpdateCustomerLine();
+            }
+        };
     }
     
     // do things with the grocery items now
