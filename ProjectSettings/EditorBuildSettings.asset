@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Minigames/StinkerMinigame.unity
     guid: dd553e133ab59fe7c8edce886755bf88
+  - enabled: 1
+    path: Assets/Scenes/Minigames/WasherToss.unity
+    guid: 5726226457aa1394fb4f2533e298c090
   m_configObjects: {}
