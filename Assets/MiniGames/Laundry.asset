@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb2738cb7bad9af448d8fb358f826ad7, type: 3}
   m_Name: Laundry
   m_EditorClassIdentifier: 
-  scene: {fileID: 102900000, guid: 5726226457aa1394fb4f2533e298c090, type: 3}
+  sceneName: WasherToss
   name: Clean Laundry
   description: 
   timerLength: 15

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb2738cb7bad9af448d8fb358f826ad7, type: 3}
   m_Name: Register
   m_EditorClassIdentifier: 
-  scene: {fileID: 102900000, guid: 7a8c4fdd43474b54ea83856c2547dc30, type: 3}
+  sceneName: RegisterMiniGame
   name: Cash Register
   description: 
   timerLength: 12

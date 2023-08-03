@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb2738cb7bad9af448d8fb358f826ad7, type: 3}
   m_Name: Wipe
   m_EditorClassIdentifier: 
-  scene: {fileID: 102900000, guid: f10442b45b91b4d4a8c262d391dfa813, type: 3}
+  sceneName: WipeMiniGame
   name: Clean the Spill
   description: 
   timerLength: 5
