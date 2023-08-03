@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor.Media;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class WipingController : MonoBehaviour
 {
+    public Material[] materials;
+
     public Texture2D maskTextureBase; // Assign the mask texture in the Inspector
     private Texture2D maskTexture; // Assign the mask texture in the Inspector
     public Texture2D brush; // Assign the mask texture in the Inspector
@@ -27,7 +30,15 @@ public class WipingController : MonoBehaviour
     
     private void Start()
     {
+
+
+
+
         meshRenderer = GetComponent<MeshRenderer>();
+        meshRenderer.material = materials[Random.Range(0, materials.Length)];
+        maskTextureBase = (Texture2D)meshRenderer.material.mainTexture;
+
+
         maskMaterial = meshRenderer.material;
         
         Texture2D maskClone = new Texture2D(maskTextureBase.width, maskTextureBase.height);
