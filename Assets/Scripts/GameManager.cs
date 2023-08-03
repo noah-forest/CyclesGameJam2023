@@ -242,7 +242,7 @@ public class GameManager : MonoBehaviour
             cash = 0;
             return;
         }
-        Debug.Log("Got cash");
+        //Debug.Log("Got cash");
         cash += amt + difficulty * 10; // oh yeah baby
     }
 
