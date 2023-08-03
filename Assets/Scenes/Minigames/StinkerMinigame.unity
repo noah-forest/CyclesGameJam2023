@@ -883,7 +883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stinker: {fileID: 1435202401}
-  stinkerCount: 3
+  stinkerCount: 1
   sprayParticles: {fileID: 6992630363227577184}
   raycastSprayFrom: {fileID: 3434795008708353320}
   grabText: {fileID: 1946193557688443984}
