@@ -10310,6 +10310,8 @@ MonoBehaviour:
   - {fileID: 7040173788522016526}
   - {fileID: 8382650653415401573}
   targetText: {fileID: 1276671519}
+  closeDoorIndicator: {fileID: 1104216385}
+  pressButtonIndicator: {fileID: 104107312}
   pivot: {fileID: 611537482}
   originalPivot: {fileID: 1113412900}
   WashingMachine: {fileID: 6029120406410991573}
