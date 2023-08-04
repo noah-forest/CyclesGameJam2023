@@ -30,7 +30,10 @@ public class PunchOutGameManager : MonoBehaviour
 
     private void Start()
     {
-        GameMusicPlayer.Instance.PickRandomSong();
+        if (GameMusicPlayer.Instance)
+        {
+            GameMusicPlayer.Instance.PickRandomSong();
+        }
         scanned.OnScan.AddListener(OnScan);
     }
 

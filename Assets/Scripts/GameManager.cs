@@ -11,6 +11,10 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
+    public AudioClip winSound;
+    public AudioClip loseSound;
+    public AudioSource audioSource;
+    
     public bool debugMode = false;
     
     public Minigame loadingScene;
@@ -126,6 +130,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadMinigameScene(Minigame minigame)
     {
+        Debug.Log("Loading " + minigame.sceneName);
         SceneManager.LoadScene(minigame.sceneName);
         currentMinigame = minigame;
         currentTime = currentMinigame.timerLength;
@@ -198,6 +203,7 @@ public class GameManager : MonoBehaviour
     {
         if (!minigameEnded)
         {
+            audioSource.PlayOneShot(winSound);
             minigameEnded = true;
             SetGameText("Success!", Color.green);
             AddCash(currentMinigame.cashReward);
@@ -212,6 +218,8 @@ public class GameManager : MonoBehaviour
     {
         if (!minigameEnded)
         {
+            audioSource.PlayOneShot(loseSound);
+
             minigameEnded = true;
             currentTime = 0;
 

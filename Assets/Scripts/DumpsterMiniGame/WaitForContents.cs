@@ -12,7 +12,10 @@ public class WaitForContents : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        count++;
+        if (other.tag.CompareTo("trash") == 0)
+        {
+            count++;
+        }
     }
 
     private void Update()

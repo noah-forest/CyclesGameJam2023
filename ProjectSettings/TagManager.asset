@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Scanner
   - GameText
+  - trash
   layers:
   - Default
   - TransparentFX

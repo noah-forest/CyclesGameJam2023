@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7537266576730797072}
   m_Layer: 0
   m_Name: Plastic_Bag_Dirt_01
-  m_TagString: Untagged
+  m_TagString: trash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
