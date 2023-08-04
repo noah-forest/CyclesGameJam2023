@@ -1146,17 +1146,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueChoices:
-  - Don't say another word.
   - It's kinda hot in here
   - ASOIDHASDHLKASDKAL
-  - Ur hot
-  - You guys got Mustard?
-  - It kinda smells in here
   - How did I get here? Who am I?
-  - Just gotta get through this week
-  - Its been a rough week
+  - It kinda smells in here
   - Jesus loves you.
+  - You guys got Mustard?
+  - Ur hot
+  - Just gotta get through this week
+  - Don't say another word.
   - Do you guys take cash
+  - Its been a rough week
+  - Have you seen that huge duck?
+  - Women are my favorite guy
 --- !u!224 &946882944 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8342556494716716637, guid: 16ebd430c3b48f5499386ecaaa18a08b,

@@ -24,7 +24,6 @@ public class Bike : MonoBehaviour
     private float lastButtonPressTime = 0.0f;
 
     private Animator animator;
-
     public RectTransform effortPanel;
     public RectTransform effortBar;
     private Image effortBarImage;
