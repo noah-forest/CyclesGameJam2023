@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4552635316278671955}
   - component: {fileID: 2588824201510266941}
   - component: {fileID: 7537266576730797072}
+  - component: {fileID: -8083012825548013801}
   m_Layer: 0
   m_Name: Plastic_Bag_Dirt_01
   m_TagString: trash
@@ -155,3 +156,20 @@ MonoBehaviour:
   freezeRigidbodyZ: 1
   planePosition: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
+--- !u!114 &-8083012825548013801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6360879214886888953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c426c726cbdfc043915bbd781d906e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - {fileID: 8300000, guid: 8b15b4ed2cd37e64f8f88e1b23a592db, type: 3}
+  - {fileID: 8300000, guid: 7ef64ee5265917f4f9d82a6b47c844d6, type: 3}
+  - {fileID: 8300000, guid: 339e81ce1f70e9443bb1b275e00d3fe2, type: 3}
+  - {fileID: 8300000, guid: 8153a5f36489f15468e8a6e9ce07179e, type: 3}
