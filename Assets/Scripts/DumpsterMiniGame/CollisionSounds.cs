@@ -8,25 +8,40 @@ public class CollisionSounds : MonoBehaviour
 {
     public AudioClip[] sounds;
     private AudioSource audioSource;
-    private Rigidbody rb;
 
-    void Start()
+    private bool collided = false;
+    private bool played = false;
+    
+    private void Start()
     {
-        rb = GetComponent<Rigidbody>();
         audioSource = gameObject.AddComponent<AudioSource>();
+    }
+
+    private void FixedUpdate()
+    {
+        if (!collided) return;
+        PlayCollisionSound();
+        collided = false;
+        played = true;
+        StartCoroutine(waitForSound());
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        float speed = rb.velocity.magnitude;
-        audioSource.pitch = Random.Range(90, 120) / 100f;
-        audioSource.volume = 0.05f;
+        if(played) return;
+        collided = true;
+    }
+
+    private void PlayCollisionSound()
+    {
+        audioSource.pitch = Random.Range(90, 100) / 100f;
+        audioSource.volume = 0.03f;
         audioSource.PlayOneShot(sounds[Random.Range(0, sounds.Length)]);
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator waitForSound()
     {
-        
+        yield return new WaitForSeconds(0.5f);
+        played = false;
     }
 }
