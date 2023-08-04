@@ -39,7 +39,7 @@ public class WipingController : MonoBehaviour
 
     private void Start()
     {
-
+        originalSpillSize += GameManager.singleton.difficulty / 30;
 
          
 
