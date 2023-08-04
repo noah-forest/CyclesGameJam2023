@@ -210,7 +210,7 @@ public class GameManager : MonoBehaviour
     {
         if (!minigameEnded)
         {
-            audioSource.PlayOneShot(winSound);
+            //audioSource.PlayOneShot(winSound);
             minigameEnded = true;
             SetGameText("Success!", Color.green);
             AddCash(currentMinigame.cashReward);
