@@ -162,7 +162,7 @@ public class RegisterGameManager : MonoBehaviour
     private void PickRandomSpeechBubble()
     {
         int index = 0;
-        int randomNum = Random.Range(0, 3);
+        int randomNum = Random.Range(0, 2);
         if (randomNum == 0) willSpeak = true;
         else willSpeak = false;
 
