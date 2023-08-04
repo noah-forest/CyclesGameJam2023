@@ -8,13 +8,19 @@ using Random = UnityEngine.Random;
 public class PunchOutGameManager : MonoBehaviour
 {
     public TextMeshPro screenText;
-    
+
+    public GameObject card;
+    public Transform startingPos;
+
+    [SerializeField] private resetCardPosition exitBounds1;
+    [SerializeField] private resetCardPosition exitBounds2;
     [SerializeField] private CanScan resetTrigger;
     [SerializeField] private ScannedCard scanned;
 
     private AudioSource _audioSource;
     [SerializeField] private AudioClip beep;
     [SerializeField] private AudioClip fail;
+    private Rigidbody rb;
 
     private int scanTarget;
     private int scanCount;
@@ -25,6 +31,7 @@ public class PunchOutGameManager : MonoBehaviour
     {
         _audioSource = GetComponent<AudioSource>();
         scanTarget = Random.Range(1, 5);
+        rb = card.GetComponent<Rigidbody>();
         Debug.Log("scans needed: " + scanTarget);
     }
 
@@ -35,6 +42,8 @@ public class PunchOutGameManager : MonoBehaviour
             GameMusicPlayer.Instance.PickRandomSong();
         }
         scanned.OnScan.AddListener(OnScan);
+        exitBounds1.OutOfBounds.AddListener(OnExitBounds);
+        exitBounds2.OutOfBounds.AddListener(OnExitBounds);
     }
 
     private void OnScan()
@@ -59,8 +68,12 @@ public class PunchOutGameManager : MonoBehaviour
             resetTrigger.canBeScanned = false;
         }
     }
-    
-    
+
+    private void OnExitBounds()
+    {
+        card.transform.position = startingPos.transform.position;
+        rb.velocity = Vector3.zero;
+    }
     
     IEnumerator FailedScan(float delay)
     {
