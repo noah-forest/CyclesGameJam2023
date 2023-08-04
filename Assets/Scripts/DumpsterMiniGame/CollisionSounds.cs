@@ -19,16 +19,16 @@ public class CollisionSounds : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!collided) return;
+        if (!collided) return; //only do if we have collided with something
         PlayCollisionSound();
         collided = false;
-        played = true;
-        StartCoroutine(waitForSound());
+        played = true; //we have played the sound
+        StartCoroutine(waitForSound()); //wait before we can play the sound again
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        if(played) return;
+        if(played) return; //only set collided if the sound has not been played
         collided = true;
     }
 
@@ -41,7 +41,7 @@ public class CollisionSounds : MonoBehaviour
 
     IEnumerator waitForSound()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f); //time to wait between collision sounds
         played = false;
     }
 }
