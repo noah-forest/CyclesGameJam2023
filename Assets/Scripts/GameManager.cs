@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
 
     public UIManager uiManager;
     public TextMeshPro gameText;
+    public TextMeshProUGUI scoreText;
+    public GameObject gameOverScreen;
 
     private float _cash;
     public float cash
@@ -241,9 +243,8 @@ public class GameManager : MonoBehaviour
             if (lives <= 0)
             {
                 //game over
-                SceneManager.LoadScene(0);
-                Destroy(GameMusicPlayer.Instance);
-                Destroy(gameObject);
+                gameOverScreen.SetActive(true);
+                scoreText.SetText("Score: " + cash);
             }
             else
             {

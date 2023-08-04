@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
+    public GameObject checkMenu;
     public static bool isPaused;
 
     private void Start()
@@ -50,6 +51,19 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         isPaused = false;
+        //Destroy(pauseMenu.gameObject);
+        Destroy(GameMusicPlayer.Instance.gameObject);
+        Destroy(GameManager.singleton.gameObject);
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void OpenCheckMenu()
+    {
+        checkMenu.SetActive(true);
+    }
+
+    public void CloseCheckMenu()
+    {
+        checkMenu.SetActive(false);
     }
 }
