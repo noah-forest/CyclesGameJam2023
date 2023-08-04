@@ -1369,13 +1369,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1039597499}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.106084496, y: -0.699104, z: 0.70142275, w: 0.08947554}
-  m_LocalPosition: {x: 31.4212, y: -13.9, z: 60.5}
-  m_LocalScale: {x: 9.755381, y: 5.9768033, z: 5.4336524}
+  m_LocalRotation: {x: 0.049145356, y: -0.7040426, z: 0.70769656, w: 0.0327777}
+  m_LocalPosition: {x: 239, y: -305, z: 402}
+  m_LocalScale: {x: 64.104774, y: 5.9768033, z: 90.50664}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 91.35901, y: -89.99899, z: 74.103}
+  m_LocalEulerAnglesHint: {x: 91.35901, y: -99.263, z: 74.094}
 --- !u!1001 &1042348510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1843,6 +1843,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e5695575887084aa746c6ea95fbcf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winSound: {fileID: 0}
+  loseSound: {fileID: 0}
+  audioSource: {fileID: 0}
   debugMode: 1
   loadingScene: {fileID: 0}
   startingGame: {fileID: 0}
