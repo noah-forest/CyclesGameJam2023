@@ -14,7 +14,7 @@ public class GameMusicPlayer : MonoBehaviour
     
     #region singleton
 
-    private static GameMusicPlayer Instance { get; set; }
+    public static GameMusicPlayer Instance { get; private set; }
     
     private void Awake()
     {
@@ -50,6 +50,11 @@ public class GameMusicPlayer : MonoBehaviour
         ResetShuffle();
     }
 
+    public void PickRandomSong()
+    {
+        _audioSource.Stop();
+        ChangeSong(Random.Range(0, songs.Length));
+    }
     private void ChangeSong(int songPicked)
     {
         if (!_beenPlayed[songPicked])

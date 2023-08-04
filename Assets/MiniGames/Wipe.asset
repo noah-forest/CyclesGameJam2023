@@ -15,7 +15,7 @@ MonoBehaviour:
   sceneName: WipeMiniGame
   name: Clean the Spill
   description: 
-  timerLength: 5
+  timerLength: 6
   cashReward: 100
   cashPenalty: 0
   playMax: 3
