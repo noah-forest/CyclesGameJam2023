@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 public class GameMusicPlayer : MonoBehaviour
 {
     public AudioClip[] songs;
+    private GameObject speaker;
     private AudioSource _audioSource;
     [SerializeField] private float _songsPlayed;
     [SerializeField] private bool[] _beenPlayed;
@@ -84,5 +85,12 @@ public class GameMusicPlayer : MonoBehaviour
                 }
             }
         }
+    }
+
+    public IEnumerator FindSpeaker()
+    {
+        yield return new WaitForSeconds(0.001f);
+        speaker = GameObject.FindGameObjectWithTag("Speaker");
+        gameObject.transform.position = speaker.transform.position;
     }
 }

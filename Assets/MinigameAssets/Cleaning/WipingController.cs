@@ -8,6 +8,8 @@ public class WipingController : MonoBehaviour
 {
     public Material[] materials;
 
+    public GameObject[] speakers;
+
     public Texture2D maskTextureBase; // Assign the mask texture in the Inspector
     private Texture2D maskTexture; // Assign the mask texture in the Inspector
     public Texture2D brush; // Assign the mask texture in the Inspector

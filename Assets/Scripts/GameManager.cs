@@ -132,6 +132,7 @@ public class GameManager : MonoBehaviour
         maxTime = currentMinigame.timerLength;
         minigameEnded = false;
         Cursor.lockState = CursorLockMode.Confined;// unlock cursor incase it was locked by previous minigame when it ended.
+        StartCoroutine(GameMusicPlayer.Instance.FindSpeaker());
     }
 
     public void FadeToMinigame(Minigame minigame)
