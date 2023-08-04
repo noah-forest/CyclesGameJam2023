@@ -8,8 +8,8 @@ using Random = UnityEngine.Random;
 
 public class DumpsterGameManager : MonoBehaviour
 {
+    private bool completed = false;
     public static DumpsterGameManager singleton;
-    
     
     public TextMeshPro objText;
 
@@ -41,6 +41,10 @@ public class DumpsterGameManager : MonoBehaviour
 
     public void Completed()
     {
-        GameManager.singleton.FinishMiniGame();
+        if (!completed)
+        {
+            completed = true;
+            GameManager.singleton.FinishMiniGame();
+        }
     }
 }
