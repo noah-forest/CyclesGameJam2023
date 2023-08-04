@@ -8,6 +8,9 @@ public class WipingController : MonoBehaviour
 {
     public Material[] materials;
 
+    //used for music manager. basically one of two speakers is chosen to play.
+    public GameObject[] speakers;
+
     public Texture2D maskTextureBase; // Assign the mask texture in the Inspector
     private Texture2D maskTexture; // Assign the mask texture in the Inspector
     public Texture2D brush; // Assign the mask texture in the Inspector
@@ -27,9 +30,19 @@ public class WipingController : MonoBehaviour
     public List<int> pixelsToCheck = new List<int>();
 
     private float originalSpillSize = 0.3794284f;
-    
+
+    private void Awake()
+    {
+        //used for music manager. basically one of two speakers is chosen to play.
+        speakers[Random.Range(0, 1)].SetActive(false);  // disable one random speaker of 2
+    }
+
     private void Start()
     {
+
+
+         
+
         meshRenderer = GetComponent<MeshRenderer>();
         meshRenderer.material = materials[Random.Range(0, materials.Length)];
         maskTextureBase = (Texture2D)meshRenderer.material.mainTexture;

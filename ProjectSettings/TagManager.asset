@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Scanner
   - GameText
+  - Speaker
   - trash
   layers:
   - Default
