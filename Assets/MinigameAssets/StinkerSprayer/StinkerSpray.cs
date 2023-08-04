@@ -37,6 +37,7 @@ public class StinkerSpray : MonoBehaviour
 
     void Start()
     {
+        stinkerCount += GameManager.singleton.difficulty;
         for (int i = 0; i < stinkerCount; i++)
         {
             GameObject stink = Instantiate(stinker);

@@ -51,6 +51,7 @@ public class OpenWasherDoor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        numOfItems += GameManager.singleton.difficulty; // this is /2 rounded up, aka add an item every other round
         SpawnRandomObject();
         OpenDoor();
         cam = Camera.main;
