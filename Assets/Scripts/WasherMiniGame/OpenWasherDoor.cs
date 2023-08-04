@@ -31,6 +31,10 @@ public class OpenWasherDoor : MonoBehaviour
 
     private Animator buttonAnim;
     private Animator washerAnim;
+
+    public AudioSource doorAudio;
+    public AudioClip doorOpen;
+    public AudioClip doorClose;
     
     private int DoorLayerMask = 1 << 7;
     private int StartLayerMask = 1 << 8;
@@ -131,7 +135,6 @@ public class OpenWasherDoor : MonoBehaviour
         if (washTimer >= timeToWash)
         {
             // clean the models? 
-            Debug.Log("Washing Done!");
             washerAnim.SetTrigger("PauseWashing");
             washerAnim.ResetTrigger("Washing");
             ResetTimer();
@@ -143,6 +146,7 @@ public class OpenWasherDoor : MonoBehaviour
     private void OpenDoor()
     {
         door.SetPositionAndRotation(pivot.localPosition, pivot.localRotation);
+        doorAudio.PlayOneShot(doorOpen);
         hasBeenOpened = true;
         canStart = false;
         washing = false;
@@ -151,6 +155,7 @@ public class OpenWasherDoor : MonoBehaviour
     private void CloseDoor()
     {
         closeDoorIndicator.SetActive(false);
+        doorAudio.PlayOneShot(doorClose);
         pressButtonIndicator.SetActive(true);
         door.SetPositionAndRotation(originalPivot.localPosition, originalPivot.localRotation);
         hasBeenOpened = false;

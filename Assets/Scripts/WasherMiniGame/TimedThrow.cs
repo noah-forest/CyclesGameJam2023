@@ -13,6 +13,7 @@ public class TimedThrow : MonoBehaviour
     public float speed = 0.5f;
     public float angle = 80;
     public GameObject arrow;
+    private AudioSource _audio;
 
     public Vector3 throwForce;
 
@@ -32,6 +33,7 @@ public class TimedThrow : MonoBehaviour
     
     void Start()
     {
+        _audio = GetComponent<AudioSource>();
         originalPosition = transform.position;
         originalRotation = transform.rotation;
         rb = GetComponent<Rigidbody>();
@@ -105,6 +107,7 @@ public class TimedThrow : MonoBehaviour
     
     private void Throw()
     {
+        _audio.PlayOneShot(_audio.clip);
         canThrow = false;
         thrown = true;
         arrow.SetActive(false);

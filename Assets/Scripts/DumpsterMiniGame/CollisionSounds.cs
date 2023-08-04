@@ -20,6 +20,7 @@ public class CollisionSounds : MonoBehaviour
     {
         float speed = rb.velocity.magnitude;
         audioSource.pitch = Random.Range(90, 120) / 100f;
+        audioSource.volume = 0.05f;
         audioSource.PlayOneShot(sounds[Random.Range(0, sounds.Length)]);
     }
 
