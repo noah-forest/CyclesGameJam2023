@@ -1579,7 +1579,7 @@ MonoBehaviour:
   - {fileID: 928369960}
   maskTextureBase: {fileID: 2800000, guid: 3733ebea9cd63e747966732d2f5eda5b, type: 3}
   brush: {fileID: 2800000, guid: 8ae890ae9dc23eb40ba4c6367a283dd6, type: 3}
-  brushSize: 15
+  brushSize: 20
   text: {fileID: 199247998}
   pixelsToCheck: 
 --- !u!64 &416734453

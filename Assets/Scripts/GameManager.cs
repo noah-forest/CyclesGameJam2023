@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     
     public static GameManager singleton;
     public static Minigame currentMinigame = null;
+    private static Minigame lastMinigame = null;
 
     public bool minigameEnded { private set; get; }
 
@@ -130,6 +131,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadMinigameScene(Minigame minigame)
     {
+        lastMinigame = currentMinigame;
         Debug.Log("Loading " + minigame.sceneName);
         SceneManager.LoadScene(minigame.sceneName);
         currentMinigame = minigame;
@@ -184,6 +186,10 @@ public class GameManager : MonoBehaviour
             do
             {
                 nextGame = games[Random.Range(0, games.Length)];
+                //if(nextGame == lastMinigame)
+                //{
+
+                //}
             } while (playTracker[nextGame] >= nextGame.playMax); // should probably make this work off a shrinking list instead since this will get slower the less uncompleted games there are.
 
         }
@@ -235,6 +241,9 @@ public class GameManager : MonoBehaviour
             if (lives <= 0)
             {
                 //game over
+                SceneManager.LoadScene(0);
+                Destroy(GameMusicPlayer.Instance);
+                Destroy(gameObject);
             }
             else
             {
