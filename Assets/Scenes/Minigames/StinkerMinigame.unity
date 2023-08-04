@@ -443,7 +443,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c7bb1ed042ffa6b4c8ac4818689a352b, type: 2}
+  - {fileID: 2100000, guid: 320f335314b3e614eab498b442939c67, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -481,13 +481,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 477434582}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.70710677, z: 0.70710677, w: 0}
-  m_LocalPosition: {x: -0.06, y: -1.67, z: 5.39}
+  m_LocalRotation: {x: -0.23856577, y: -0.6721673, z: 0.6647854, w: -0.22212158}
+  m_LocalPosition: {x: -0.24, y: -2.76, z: 5.39}
   m_LocalScale: {x: 1.1655948, y: 1, z: 1.1066235}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: -90, z: 90}
+  m_LocalEulerAnglesHint: {x: 88.54, y: -133.189, z: 84.837}
 --- !u!61 &477434587
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -645,7 +645,7 @@ Transform:
   m_GameObject: {fileID: 819784752}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.165, y: 1.528, z: 0}
+  m_LocalPosition: {x: -0.165, y: 1.2, z: 0}
   m_LocalScale: {x: 0.72930884, y: 0.72930884, z: 0.72930884}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1184,7 +1184,7 @@ PrefabInstance:
     - target: {fileID: 8342556494716716637, guid: 16ebd430c3b48f5499386ecaaa18a08b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.87
+      value: 1.31
       objectReference: {fileID: 0}
     - target: {fileID: 8342556494716716637, guid: 16ebd430c3b48f5499386ecaaa18a08b,
         type: 3}
@@ -1204,7 +1204,7 @@ PrefabInstance:
     - target: {fileID: 8573692270003067327, guid: 16ebd430c3b48f5499386ecaaa18a08b,
         type: 3}
       propertyPath: m_text
-      value: Spray the Stinker
+      value: Spray!
       objectReference: {fileID: 0}
     - target: {fileID: 8573692270003067327, guid: 16ebd430c3b48f5499386ecaaa18a08b,
         type: 3}
@@ -1241,6 +1241,12 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 35.72
       objectReference: {fileID: 0}
+    - target: {fileID: 8573692270003067327, guid: 16ebd430c3b48f5499386ecaaa18a08b,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 5483411604070718266, guid: 5a9a782d2042f7b4e952e8980e6939c5,
+        type: 2}
     - target: {fileID: 8573692270003067327, guid: 16ebd430c3b48f5499386ecaaa18a08b,
         type: 3}
       propertyPath: m_enableAutoSizing
