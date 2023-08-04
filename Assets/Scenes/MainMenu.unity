@@ -1473,7 +1473,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: THE CYCLE OF RETAIL
+  m_text: RETAIL'S CYCLE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5a9a782d2042f7b4e952e8980e6939c5, type: 2}
   m_sharedMaterial: {fileID: 5483411604070718266, guid: 5a9a782d2042f7b4e952e8980e6939c5,
@@ -1483,8 +1483,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4279111182
+  m_fontColor: {r: 0.05660379, g: 0.05660379, b: 0.05660379, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2527,6 +2527,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e6b8719ceb02bf844a11757ce8701732, type: 3}
   - {fileID: 8300000, guid: f0fa0003e4431b74693296a14180e25f, type: 3}
   - {fileID: 8300000, guid: 0db4bb61c30f2034aa67ffee2d85d1e3, type: 3}
+  - {fileID: 8300000, guid: f0f37228d513dd5428f6fe939677215c, type: 3}
+  - {fileID: 8300000, guid: a01b41c3d4ea14b4797d421e40c0d5eb, type: 3}
+  - {fileID: 8300000, guid: 400891a652c51f446830f52055fe4dae, type: 3}
+  - {fileID: 8300000, guid: ff7871f0884cdc847b6519e05e83b469, type: 3}
   _songsPlayed: 0
   _beenPlayed: 
 --- !u!4 &1856057674
