@@ -63,7 +63,7 @@ public class OpenWasherDoor : MonoBehaviour
     {
         GameObject obj = Instantiate(objects[Random.Range(0, objects.Length)], transform.position + new Vector3(Random.Range(-150f, 150f)/100f, 0, 0), Quaternion.identity);
         obj.SetActive(true);
-        TimedThrow timedThrow = obj.GetComponent<TimedThrow>();
+        ThrownItem timedThrow = obj.GetComponent<ThrownItem>();
         
         timedThrow.HitGoal.AddListener(() =>
         {
