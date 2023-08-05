@@ -57,8 +57,8 @@ public class DragAndRotate : MonoBehaviour
    private void UpdateRotation()
    {
       isRotating = true;
-      float xRotation = Input.GetAxis("Mouse X") * rotationSpeed;
-      float yRotation = Input.GetAxis("Mouse Y") * rotationSpeed;
+      float xRotation = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
+      float yRotation = Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
          
       rb.angularVelocity = new Vector3(yRotation, -xRotation, 0);
       rb.velocity = (targetPosition + startingDragPosition - transform.position) * movementSpeed;

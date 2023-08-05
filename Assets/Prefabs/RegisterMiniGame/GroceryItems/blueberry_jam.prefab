@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba97f6319ef410f4db170eea2a9be377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 15
+  rotationSpeed: 150
   movementSpeed: 15
   canRotate: 1
   lockPosition: {x: 0, y: 0, z: 0}
