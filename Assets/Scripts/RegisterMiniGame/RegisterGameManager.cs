@@ -61,6 +61,7 @@ public class RegisterGameManager : MonoBehaviour
     private void CreateCustomersInLine()
     {
         numOfCustomers = Random.Range(1, LinePositions.Count+1);
+        Debug.Log($"Num of customers: {numOfCustomers}");
         for (int i = 0; i < numOfCustomers; i++)
         {
             listIndex = Random.Range(0, Customers.Count);
@@ -81,7 +82,8 @@ public class RegisterGameManager : MonoBehaviour
         //Destroy(curCustomer.gameObject);
         if (lineOfCustomers.Count <= 0)
         {
-            Completed();
+            Debug.Log("Register game comlete");
+            GameManager.singleton.FinishMiniGame(); // --- ------ End game
             return;
         }
         
@@ -152,11 +154,6 @@ public class RegisterGameManager : MonoBehaviour
     {
         Gizmos.color = new Color(1f, 0.5f, 0.5f, 0.4f);
         Gizmos.DrawCube(spawnBounds.center, spawnBounds.size);
-    }
-
-    private void Completed()
-    {
-        GameManager.singleton.FinishMiniGame();
     }
 
     private void PickRandomSpeechBubble()

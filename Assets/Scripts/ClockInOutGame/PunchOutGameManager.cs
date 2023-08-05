@@ -32,7 +32,7 @@ public class PunchOutGameManager : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         scanTarget = Random.Range(1, 5);
         rb = card.GetComponent<Rigidbody>();
-        Debug.Log("scans needed: " + scanTarget);
+        //Debug.Log("scans needed: " + scanTarget);
     }
 
     private void Start()

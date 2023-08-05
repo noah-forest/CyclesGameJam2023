@@ -78,8 +78,8 @@ public class Bike : MonoBehaviour
             GameManager.singleton.FinishMiniGame();
         }
 
-        Debug.DrawLine(transform.position, transform.position + new Vector3(speed/10f, 0, 0));
-        Debug.DrawLine(transform.position + new Vector3(0, -0.3f, 0), transform.position + new Vector3(100/10, -0.3f, 0), Color.red);
+        //Debug.DrawLine(transform.position, transform.position + new Vector3(speed/10f, 0, 0));
+        //Debug.DrawLine(transform.position + new Vector3(0, -0.3f, 0), transform.position + new Vector3(100/10, -0.3f, 0), Color.red);
         animator.SetFloat("Speed", speed * animationMultiplier);
         UpdateEffortBar();
     }

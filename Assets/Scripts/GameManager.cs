@@ -19,7 +19,10 @@ public class GameManager : MonoBehaviour
     
     public Minigame loadingScene;
     public Minigame startingGame;
-    public Minigame[] games;
+    public List<Minigame> games;
+    private List<Minigame> completedGames = new List<Minigame>();
+
+    
 
     public Animator fadeAnimator;
 
@@ -34,7 +37,6 @@ public class GameManager : MonoBehaviour
     
     public static GameManager singleton;
     public static Minigame currentMinigame = null;
-    private static Minigame lastMinigame = null;
 
     public bool minigameEnded { private set; get; }
 
@@ -134,8 +136,9 @@ public class GameManager : MonoBehaviour
 
     public void LoadMinigameScene(Minigame minigame)
     {
-        lastMinigame = currentMinigame;
-        Debug.Log("Loading " + minigame.sceneName);
+        Debug.Log($"Loading: { minigame.sceneName} -----------------------------------------------------------------------------------");
+ 
+        
         SceneManager.LoadScene(minigame.sceneName);
         currentMinigame = minigame;
         currentTime = currentMinigame.timerLength;
@@ -147,6 +150,7 @@ public class GameManager : MonoBehaviour
 
     public void FadeToMinigame(Minigame minigame)
     {
+        StopAllCoroutines();
         StartCoroutine(FadeToMinigameCoroutine(minigame));
     }
 
@@ -160,50 +164,58 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextMinigame()
     {
+        // ############### Proccess game just played
         float extraPlayChance = Mathf.Clamp(difficulty / 10, 0, 0.5f);
         float roll = Random.Range(0, 1);
-        if(roll < extraPlayChance)
-        {
-            --playTracker[currentMinigame];
-            --totalPlays;
-        }
-        if (playTracker.ContainsKey(currentMinigame))
+        if (playTracker.ContainsKey(currentMinigame) ) //&& roll > extraPlayChance) // if extra play chance triggers, dont proccess game so it stays in rotation
         {
             ++playTracker[currentMinigame];
-            ++totalPlays;
+            if(playTracker[currentMinigame] >= currentMinigame.playMax)
+            {
+                games.Remove(currentMinigame);
+                completedGames.Add(currentMinigame);
+                playTracker[currentMinigame] = 0;
+            }
         }
-        
+
+        // ############### Determine next game
         Minigame nextGame;
-        if (totalPlays >= totalMaxPlays) // game cycle complete
+        Debug.Log($"games Remaining { games.Count}");
+        if (games.Count <= 0) // if game cycle complete
         {
             nextGame = startingGame;
-            foreach(Minigame mg in games) // reset play counts
+            foreach(Minigame mg in completedGames) // reset play counts
             {
+                games.Add(mg);
                 playTracker[mg] = 0;
             }
+            completedGames.Clear();
             totalPlays = 0;
             ++difficulty; // increase difficulty each time you complete a cycle
+            uiManager.UpdateDays(difficulty + 1);
         }
-        else
+        else // if cycle ongoing
         {
-            do
+            nextGame = games[Random.Range(0, games.Count)];
+            if(nextGame.name == currentMinigame.name)
             {
-                nextGame = games[Random.Range(0, games.Length)];
-                //if(nextGame == lastMinigame)
-                //{
-
-                //}
-            } while (playTracker[nextGame] >= nextGame.playMax); // should probably make this work off a shrinking list instead since this will get slower the less uncompleted games there are.
-
+                if(games.Count == 1) // if this is the only game left, interject random compelted games inbetween plays of last game
+                {
+                    Debug.Log("Only game left, loading random completed game");
+                    nextGame = completedGames[Random.Range(0, completedGames.Count)];
+                }
+                else // remove this game from the list and regenerate nextgame
+                {
+                    Debug.Log("Game just played, reselecting");
+                    Minigame justPlayed = nextGame;
+                    games.Remove(justPlayed);
+                    nextGame = nextGame = games[Random.Range(0, games.Count)];
+                    games.Add(justPlayed);
+                }
+            }
         }
-
+        Debug.Log($"{ currentMinigame.sceneName} Completed -----------------------------------------------------------------------------------");
         FadeToMinigame(nextGame);
-    }
-
-    IEnumerator DelayFinished()
-    {
-        yield return new WaitForSeconds(1.5f);
-        LoadNextMinigame();
     }
 
     /// <summary>
@@ -213,6 +225,7 @@ public class GameManager : MonoBehaviour
     {
         if (!minigameEnded)
         {
+            Debug.Log("game finished");
             //audioSource.PlayOneShot(winSound);
             minigameEnded = true;
             SetGameText("Success!", Color.green);
@@ -228,6 +241,7 @@ public class GameManager : MonoBehaviour
     {
         if (!minigameEnded)
         {
+            Debug.Log("game failed");
             audioSource.PlayOneShot(loseSound);
 
             minigameEnded = true;
@@ -253,7 +267,8 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    
+    #region HelperMethods
+
     //-- Helper Methods --//
     public void AddCash(float amt)
     {
@@ -297,4 +312,6 @@ public class GameManager : MonoBehaviour
             gameText.color = color;
         }
     }
+
+    #endregion
 }

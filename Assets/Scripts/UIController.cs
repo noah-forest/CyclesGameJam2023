@@ -13,6 +13,7 @@ public class UIController : MonoBehaviour
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI cashText;
     public TextMeshProUGUI livesText;
+    public TextMeshProUGUI daysText;
     public GameManager gameManager;
 
     public void UpdateTimerUI(float time)
@@ -45,6 +46,11 @@ public class UIController : MonoBehaviour
     public void UpdateLives(int numberOfLives)
     {
         livesText.text = $"Lives: {numberOfLives}";
+    }
+
+    public void UpdateDays(int numberOfDays)
+    {
+        daysText.text = $"Day: {numberOfDays}";
     }
 
     private void TimerLow()

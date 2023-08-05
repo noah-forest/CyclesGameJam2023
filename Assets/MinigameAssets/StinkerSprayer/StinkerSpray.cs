@@ -247,7 +247,7 @@ public class StinkerSpray : MonoBehaviour
 
 void DrawRay(Vector3 start, Vector3 dir, Color color)
 {
-    Debug.DrawRay(start, dir, color);
+    //Debug.DrawRay(start, dir, color);
 }
     
     private bool IsOffscreen()

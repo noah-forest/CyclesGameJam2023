@@ -34,7 +34,7 @@ public class ScannerCheck : MonoBehaviour
             }
         }
 
-        Debug.DrawRay(ray.origin, ray.direction, Color.cyan);
+        //Debug.DrawRay(ray.origin, ray.direction, Color.cyan);
     }
 
     private void OnDrawGizmosSelected()

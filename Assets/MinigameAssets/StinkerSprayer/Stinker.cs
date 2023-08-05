@@ -82,7 +82,7 @@ public class Stinker : MonoBehaviour
 
     private void Update()
     {
-        Debug.DrawLine(transform.position, transform.position + new Vector3(currentDirection.x, currentDirection.y) * 5);
+        //Debug.DrawLine(transform.position, transform.position + new Vector3(currentDirection.x, currentDirection.y) * 5);
     }
 
     private void RandomizeWalk()

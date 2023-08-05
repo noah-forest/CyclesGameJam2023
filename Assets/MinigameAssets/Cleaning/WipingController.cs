@@ -166,6 +166,7 @@ public class WipingController : MonoBehaviour
             var percent = (dirtAmount / originalDirtAmount) * 100;
             if (percent < 5)
             {
+                StopAllCoroutines();
                 GameManager.singleton.FinishMiniGame();
             }
         }
