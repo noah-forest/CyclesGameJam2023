@@ -37,6 +37,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ResumeGame()
     {
+        Debug.Log("clicked");
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
@@ -44,6 +45,7 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
+        Debug.Log("clicked");
         Application.Quit();
     }
 
@@ -59,6 +61,7 @@ public class PauseMenu : MonoBehaviour
 
     public void OpenCheckMenu()
     {
+        Debug.Log("clicked");
         checkMenu.SetActive(true);
     }
 

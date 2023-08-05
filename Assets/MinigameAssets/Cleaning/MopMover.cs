@@ -21,6 +21,7 @@ public class MopMover : MonoBehaviour
 
     void Update()
     {
+        if (PauseMenu.isPaused) return;
         // Cast a ray from the camera to the mouse cursor position
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 

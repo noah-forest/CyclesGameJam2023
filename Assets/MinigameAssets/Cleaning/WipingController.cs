@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -77,6 +78,7 @@ public class WipingController : MonoBehaviour
         originalDirtAmount = ReadDirtCount();
         StartCoroutine(WaitForFinished());
     }
+    
     public static Texture2D Bilinear(Texture2D source, int targetWidth, int targetHeight)
     {
         Texture2D result = new Texture2D(targetWidth, targetHeight, source.format, false);
@@ -100,13 +102,14 @@ public class WipingController : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if ((lastMouseMove - Input.mousePosition).magnitude > 2f)
+        if ((lastMouseMove - Input.mousePosition).magnitude > 2f && !PauseMenu.isPaused)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))
             {
+                if (PauseMenu.isPaused) return;
                 Vector2 wipePosition = GetWipePosition(hit.textureCoord);
                 UpdateMaskTexture(wipePosition);
             }
@@ -127,7 +130,7 @@ public class WipingController : MonoBehaviour
 
     public void UpdateMaskTexture(Vector2 wipePosition)
     {
-        if (!isWiping)
+        if (!isWiping && !PauseMenu.isPaused)
         {
             isWiping = true;
             
