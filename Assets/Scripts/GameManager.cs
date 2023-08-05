@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     public TextMeshPro gameText;
     public TextMeshProUGUI scoreText;
     public GameObject gameOverScreen;
+    public Animator starAnim;
 
     private float _cash;
     public float cash
@@ -256,6 +257,7 @@ public class GameManager : MonoBehaviour
     //-- Helper Methods --//
     public void AddCash(float amt)
     {
+        starAnim.SetTrigger("scoreTrigger");
         if (cash + amt < 0)
         {
             cash = 0;
@@ -263,6 +265,7 @@ public class GameManager : MonoBehaviour
         }
         //Debug.Log("Got cash");
         cash += amt + difficulty * 10; // oh yeah baby
+        starAnim.ResetTrigger("scoreTrigger");
     }
 
     public void AddTime(float time)
