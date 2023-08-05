@@ -17,7 +17,7 @@ public class DumpsterGameManager : MonoBehaviour
     public List<Transform> spawnLocations = new List<Transform>();
 
     public int numOfObjects;
-
+    public int maxBags = 3;
     private int trashIndex;
     private int spawnIndex;
 
@@ -26,7 +26,7 @@ public class DumpsterGameManager : MonoBehaviour
     private void Awake()
     {
         singleton = this;
-        numOfObjects = Random.Range(1, 4);
+        numOfObjects = Mathf.Clamp(Random.Range(1, GameManager.singleton.difficulty), 1, maxBags);
     }
 
     private void Start()
