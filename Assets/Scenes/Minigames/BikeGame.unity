@@ -36395,7 +36395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficulty: 0.8
-  maxDiffuclty: 1
+  maxDifficulty: 4
   minDifficulty: 0.6
   endProgress: 30
   animationMultiplier: 0.033
@@ -36404,6 +36404,7 @@ MonoBehaviour:
   effortBar: {fileID: 528991236}
   progressPanel: {fileID: 1137735867}
   progressBar: {fileID: 251340161}
+  bikeAudio: {fileID: 1892493550}
 --- !u!95 &1892493547
 Animator:
   serializedVersion: 5
@@ -36504,10 +36505,10 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 0b97734ba92b05146a9803a88a5a2b63,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 9eb3caa97c79138408543fa84960320d, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.09
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
