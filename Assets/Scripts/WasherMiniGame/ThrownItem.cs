@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
-public class TimedThrow : MonoBehaviour
+public class ThrownItem : MonoBehaviour
 {
     public UnityEvent HitGoal = new UnityEvent();
     
