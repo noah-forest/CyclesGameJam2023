@@ -193,6 +193,7 @@ public class GameManager : MonoBehaviour
             totalPlays = 0;
             ++difficulty; // increase difficulty each time you complete a cycle
             uiManager.UpdateDays(difficulty + 1);
+            Debug.Log(difficulty + 1);
         }
         else // if cycle ongoing
         {
@@ -214,7 +215,6 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        Debug.Log($"{ currentMinigame.sceneName} Completed -----------------------------------------------------------------------------------");
         FadeToMinigame(nextGame);
     }
 
