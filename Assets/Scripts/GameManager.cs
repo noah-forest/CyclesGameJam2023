@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     public bool minigameEnded { private set; get; }
 
-    public UIManager uiManager;
+    public UIController uiManager;
     public TextMeshPro gameText;
     public TextMeshProUGUI scoreText;
     public GameObject gameOverScreen;
