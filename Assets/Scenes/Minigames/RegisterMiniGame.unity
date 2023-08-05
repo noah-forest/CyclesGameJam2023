@@ -1146,7 +1146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueChoices:
-  - ASOIDHASDHLKASDKAL
+  - help
   - Jesus loves you.
   - Ur hot
   - Just gotta get through this week
@@ -1159,6 +1159,7 @@ MonoBehaviour:
   - Can I speak to your manager
   - You're really slow
   - Can't you be any faster
+  - Men are my favorite kind of Girl
 --- !u!224 &946882944 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8342556494716716637, guid: 16ebd430c3b48f5499386ecaaa18a08b,
