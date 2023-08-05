@@ -15,7 +15,7 @@ MonoBehaviour:
   sceneName: WasherToss
   name: Clean Laundry
   description: 
-  timerLength: 15
+  timerLength: 12
   cashReward: 200
   cashPenalty: 0
   playMax: 1

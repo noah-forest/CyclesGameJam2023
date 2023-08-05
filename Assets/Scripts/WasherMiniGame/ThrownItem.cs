@@ -61,7 +61,7 @@ public class ThrownItem : MonoBehaviour
         if (!isResetting)
         {
             isResetting = true;
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
             if (!inGoal)
             {
                 Reset();
