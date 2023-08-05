@@ -11,7 +11,6 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
-    public AudioClip winSound;
     public AudioClip loseSound;
     public AudioSource audioSource;
     
@@ -154,9 +153,11 @@ public class GameManager : MonoBehaviour
     IEnumerator FadeToMinigameCoroutine(Minigame minigame)
     {
         fadeAnimator.SetBool("Transition", true);
+        uiManager.timerAudio.Pause();
         yield return new WaitForSeconds(1.5f);
         LoadMinigameScene(minigame);
         fadeAnimator.SetBool("Transition", false);
+        uiManager.timerAudio.UnPause();
     }
 
     public void LoadNextMinigame()
@@ -223,7 +224,6 @@ public class GameManager : MonoBehaviour
         if (!minigameEnded)
         {
             Debug.Log("game finished");
-            //audioSource.PlayOneShot(winSound);
             minigameEnded = true;
             SetGameText("Success!", Color.green);
             AddCash(currentMinigame.cashReward);

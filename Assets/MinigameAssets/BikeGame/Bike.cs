@@ -98,6 +98,9 @@ public class Bike : MonoBehaviour
             started = false;
         }
 
+        if(PauseMenu.isPaused) bikeAudio.Pause();
+        else bikeAudio.UnPause();
+        
         switch (started)
         {
             case true when !playingAudio:

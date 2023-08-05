@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
@@ -15,6 +16,12 @@ public class UIController : MonoBehaviour
     public TextMeshProUGUI livesText;
     public TextMeshProUGUI daysText;
     public GameManager gameManager;
+
+    public AudioSource timerAudio;
+    public AudioClip[] timerSounds;
+
+    private bool timerTicking;
+    private bool timerLow;
 
     public void UpdateTimerUI(float time)
     {
@@ -34,7 +41,19 @@ public class UIController : MonoBehaviour
         else
         {
             ResetTimerColor();
+            timerLow = false;
         }
+        
+        if (time <= 0 || PauseMenu.isPaused)
+        {
+            timerAudio.Pause();
+        } else 
+            timerAudio.UnPause();
+
+        if (timerTicking || timerLow) return;
+        timerAudio.clip = timerSounds[0];
+        timerAudio.Play();
+        timerTicking = true;
     }
 
     public void UpdateCashUI(float amt)
@@ -56,9 +75,17 @@ public class UIController : MonoBehaviour
     private void TimerLow()
     {
         timerText.color = Color.red;
+        timerLow = true;
+        
+        //do audio stuff
+        if (!timerTicking) return;
+        timerAudio.clip = timerSounds[1];
+        timerAudio.loop = true;
+        timerAudio.Play();
+        timerTicking = false;
     }
 
-    public void ResetTimerColor()
+    private void ResetTimerColor()
     {
         timerText.color = Color.black;
     }

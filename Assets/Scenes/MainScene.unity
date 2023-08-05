@@ -2854,6 +2854,26 @@ PrefabInstance:
       propertyPath: livesText
       value: 
       objectReference: {fileID: 785951454}
+    - target: {fileID: 2320834493917097230, guid: c76e99ffca679ea49b933feeded97f80,
+        type: 3}
+      propertyPath: timerAudio
+      value: 
+      objectReference: {fileID: 2152089610684620506}
+    - target: {fileID: 2320834493917097230, guid: c76e99ffca679ea49b933feeded97f80,
+        type: 3}
+      propertyPath: timerSounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320834493917097230, guid: c76e99ffca679ea49b933feeded97f80,
+        type: 3}
+      propertyPath: timerSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2e64d2590af156646bc4da238c9180ff, type: 3}
+    - target: {fileID: 2320834493917097230, guid: c76e99ffca679ea49b933feeded97f80,
+        type: 3}
+      propertyPath: timerSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: c880defbd5a474745b1e2fb55c9d39c1, type: 3}
     - target: {fileID: 2540067317238888555, guid: c76e99ffca679ea49b933feeded97f80,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2876,8 +2896,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2557264028276997796, guid: c76e99ffca679ea49b933feeded97f80,
         type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2557264028276997796, guid: c76e99ffca679ea49b933feeded97f80,
+        type: 3}
       propertyPath: m_Volume
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2557264028276997796, guid: c76e99ffca679ea49b933feeded97f80,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2557264028276997796, guid: c76e99ffca679ea49b933feeded97f80,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2659053461304588912, guid: c76e99ffca679ea49b933feeded97f80,
         type: 3}
@@ -3391,6 +3426,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57f06b0f4f8f534d977a33733e58e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &2152089610684620506 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2557264028276997796, guid: c76e99ffca679ea49b933feeded97f80,
+    type: 3}
+  m_PrefabInstance: {fileID: 2152089610684620503}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2152089610684620507 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5356106822582909229, guid: c76e99ffca679ea49b933feeded97f80,
