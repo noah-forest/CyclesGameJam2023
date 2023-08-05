@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -29,6 +30,8 @@ public class WipingController : MonoBehaviour
 
     public TextMeshPro text;
     public List<int> pixelsToCheck = new List<int>();
+
+    public AudioSource wipeAudio;
 
     private float originalSpillSize = 0.3794284f;
 
@@ -117,7 +120,18 @@ public class WipingController : MonoBehaviour
             lastMouseMove = Input.mousePosition;
         }
     }
-    
+
+    private void OnMouseUp()
+    {
+        wipeAudio.Stop();
+    }
+
+    private void OnMouseDown()
+    {
+        if(PauseMenu.isPaused) return;
+        wipeAudio.Play();
+    }
+
     private Vector2 GetWipePosition(Vector3 target)
     {
         Vector2 wipePosition = new Vector2(
@@ -196,7 +210,7 @@ public class WipingController : MonoBehaviour
                 }
             }
         }
-        
+
         maskTexture.Apply();
 
         yield return new WaitForEndOfFrame();
