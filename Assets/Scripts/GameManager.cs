@@ -136,9 +136,6 @@ public class GameManager : MonoBehaviour
 
     public void LoadMinigameScene(Minigame minigame)
     {
-        Debug.Log($"Loading: { minigame.sceneName} -----------------------------------------------------------------------------------");
- 
-        
         SceneManager.LoadScene(minigame.sceneName);
         currentMinigame = minigame;
         currentTime = currentMinigame.timerLength;

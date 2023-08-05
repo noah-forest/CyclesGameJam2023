@@ -2800,7 +2800,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba97f6319ef410f4db170eea2a9be377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 15
   movementSpeed: 50
   canRotate: 0
   lockPosition: {x: 0, y: 0, z: 0}
@@ -2875,7 +2874,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.394
   m_Pitch: 1.25
   Loop: 0
   Mute: 0
