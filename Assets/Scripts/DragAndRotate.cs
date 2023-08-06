@@ -7,7 +7,7 @@ using Vector3 = UnityEngine.Vector3;
 public class DragAndRotate : MonoBehaviour
 {
    protected Camera cam;
-   private float rotationSpeed = 580;
+   private float rotationSpeed = 300f;
    [SerializeField] private float movementSpeed = 15f;
 
    protected Rigidbody rb;
