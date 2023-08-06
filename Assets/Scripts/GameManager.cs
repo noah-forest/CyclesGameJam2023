@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     public UIController uiManager;
     public TextMeshPro gameText;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI daysText;
     public GameObject gameOverScreen;
     public Animator starAnim;
 
@@ -121,6 +122,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        Application.targetFrameRate = 144;
+    }
+
     private void Update()
     {
         if (!minigameEnded)
@@ -191,7 +197,6 @@ public class GameManager : MonoBehaviour
             totalPlays = 0;
             ++difficulty; // increase difficulty each time you complete a cycle
             uiManager.UpdateDays(difficulty + 1);
-            Debug.Log(difficulty + 1);
         }
         else // if cycle ongoing
         {
@@ -257,6 +262,7 @@ public class GameManager : MonoBehaviour
                 //game over
                 gameOverScreen.SetActive(true);
                 scoreText.SetText("Score: " + cash);
+                daysText.SetText("Days: " + (difficulty + 1));
             }
             else
             {
