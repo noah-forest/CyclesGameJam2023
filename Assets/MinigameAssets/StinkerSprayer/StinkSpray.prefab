@@ -320,11 +320,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3710f7b1e8ef65b08cb67f3385fd9c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stinker: {fileID: 0}
+  stinkerCount: 2
+  maxStinkers: 5
   sprayParticles: {fileID: 6842263590426845068}
   raycastSprayFrom: {fileID: 1176739001762699716}
   grabText: {fileID: 2665021044781031612}
   sprayText: {fileID: 4651636493659837901}
   showSprayText: 1
+  facingLeft: 0
+  sprayBody: {fileID: 0}
   gravityMultiplier: 1
   edgeThickness: 0.1
   edgePrefab: {fileID: 6242926985966178678, guid: 7c71fd85b3500e8ea8ac0f6613c04fef,
@@ -373,7 +378,8 @@ AudioSource:
   m_GameObject: {fileID: 2401214104681203144}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 0b97734ba92b05146a9803a88a5a2b63,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 7398843b5c66e8b5baa2f6ad84a164c7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.68
