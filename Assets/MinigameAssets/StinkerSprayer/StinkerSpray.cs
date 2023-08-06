@@ -11,6 +11,7 @@ public class StinkerSpray : MonoBehaviour
     public GameObject stinker;
     private int killedStinkers = 0;
     public int stinkerCount = 2;
+    public int maxStinkers = 5;
     
     private bool _dragging = false;
     private bool previouslyLetGo = false;
@@ -37,7 +38,7 @@ public class StinkerSpray : MonoBehaviour
 
     void Start()
     {
-        stinkerCount += GameManager.singleton.difficulty;
+        if(stinkerCount < maxStinkers) stinkerCount += GameManager.singleton.difficulty;
         for (int i = 0; i < stinkerCount; i++)
         {
             GameObject stink = Instantiate(stinker);
