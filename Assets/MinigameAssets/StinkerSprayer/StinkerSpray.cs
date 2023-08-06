@@ -38,7 +38,8 @@ public class StinkerSpray : MonoBehaviour
 
     void Start()
     {
-        if(stinkerCount < maxStinkers) stinkerCount += GameManager.singleton.difficulty;
+        stinkerCount += GameManager.singleton.difficulty;
+        stinkerCount = Mathf.Clamp(stinkerCount, 0, maxStinkers);   
         for (int i = 0; i < stinkerCount; i++)
         {
             GameObject stink = Instantiate(stinker);

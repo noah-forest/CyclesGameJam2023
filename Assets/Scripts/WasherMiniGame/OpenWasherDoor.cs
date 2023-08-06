@@ -21,6 +21,7 @@ public class OpenWasherDoor : MonoBehaviour
     public Material wipMaterial;
 
     public int numOfItems;
+    public int maxItems = 5;
     
     private Transform Door;
 
@@ -53,6 +54,7 @@ public class OpenWasherDoor : MonoBehaviour
     void Start()
     {
         numOfItems += GameManager.singleton.difficulty; // this is /2 rounded up, aka add an item every other round
+        numOfItems = Mathf.Clamp(numOfItems, 0, maxItems);
         SpawnRandomObject();
         OpenDoor();
         cam = Camera.main;

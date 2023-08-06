@@ -51,6 +51,8 @@ public class ThrownItem : MonoBehaviour
         }
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+        rb.isKinematic = true;
+
         transform.position = originalPosition;
         transform.rotation = originalRotation;
         canThrow = true;
@@ -61,7 +63,7 @@ public class ThrownItem : MonoBehaviour
         if (!isResetting)
         {
             isResetting = true;
-            yield return new WaitForSeconds(0.35f);
+            yield return new WaitForSeconds(1f);
             if (!inGoal)
             {
                 Reset();
@@ -112,6 +114,7 @@ public class ThrownItem : MonoBehaviour
         canThrow = false;
         thrown = true;
         arrow.SetActive(false);
+        rb.isKinematic = false;
         rb.useGravity = true;
         rb.AddForce(transform.TransformDirection(throwForce), ForceMode.VelocityChange);
         rb.AddTorque(new Vector3(Random.Range(-50, 50), Random.Range(-50, 50), Random.Range(-50, 50)));
