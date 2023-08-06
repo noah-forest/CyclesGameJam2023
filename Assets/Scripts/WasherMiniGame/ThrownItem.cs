@@ -61,7 +61,7 @@ public class ThrownItem : MonoBehaviour
         if (!isResetting)
         {
             isResetting = true;
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.35f);
             if (!inGoal)
             {
                 Reset();
@@ -83,6 +83,7 @@ public class ThrownItem : MonoBehaviour
 
     void Update()
     {
+        if (PauseMenu.isPaused) return;
         if (!thrown)
         {
             Rotate();

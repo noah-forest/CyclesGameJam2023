@@ -39,11 +39,12 @@ public class OpenWasherDoor : MonoBehaviour
     private int DoorLayerMask = 1 << 7;
     private int StartLayerMask = 1 << 8;
 
-    [SerializeField] private float timeToWash = 5f;
+    //[SerializeField] private float timeToWash = 5f;
     private float washTimer;
     
     private bool hasBeenOpened;
     private bool canStart = false;
+    private bool canCloseDoor = false;
     private bool washing = false;
 
     public Transform door;
@@ -62,6 +63,7 @@ public class OpenWasherDoor : MonoBehaviour
     void SpawnRandomObject()
     {
         GameObject obj = Instantiate(objects[Random.Range(0, objects.Length)], transform.position + new Vector3(Random.Range(-150f, 150f)/100f, 0, 0), Quaternion.identity);
+        Debug.Log(transform.position);
         obj.SetActive(true);
         ThrownItem timedThrow = obj.GetComponent<ThrownItem>();
         
@@ -76,6 +78,7 @@ public class OpenWasherDoor : MonoBehaviour
             else
             {
                 closeDoorIndicator.SetActive(true);
+                canCloseDoor = true;
             }
         });
     }
@@ -96,12 +99,10 @@ public class OpenWasherDoor : MonoBehaviour
             // open and close washer door
             if (Physics.Raycast(ray, out hit, 100f, DoorLayerMask))
             {
-                if (!hasBeenOpened)
+                if (canCloseDoor)
                 {
-                    OpenDoor();
-                    washing = false;
+                    CloseDoor();
                 }
-                else CloseDoor();
             }
             
             // start the washer
@@ -119,30 +120,10 @@ public class OpenWasherDoor : MonoBehaviour
             }
         }
 
-        if (washing)
-        {
-            washTimer += Time.deltaTime;
-            // play animation of washer rattling lol
-            washerAnim.ResetTrigger("PauseWashing");
-            washerAnim.SetTrigger("Washing");
-            light.GetComponent<MeshRenderer>().material = wipMaterial;
-        }
-        else
-        {
-            washerAnim.SetTrigger("PauseWashing");
-            washerAnim.ResetTrigger("Washing");
-            light.GetComponent<MeshRenderer>().material = baseMaterial;
-        }
-
-        if (washTimer >= timeToWash)
-        {
-            // clean the models? 
-            washerAnim.SetTrigger("PauseWashing");
-            washerAnim.ResetTrigger("Washing");
-            ResetTimer();
-            OpenDoor();
-            //light.GetComponent<MeshRenderer>().material = baseMaterial;
-        }
+        if (!washing) return;
+        washerAnim.ResetTrigger("PauseWashing");
+        washerAnim.SetTrigger("Washing");
+        light.GetComponent<MeshRenderer>().material = wipMaterial;
     }
 
     private void OpenDoor()
@@ -171,11 +152,5 @@ public class OpenWasherDoor : MonoBehaviour
         buttonAnim.SetTrigger("WasherStart");
         canStart = false;
         washing = true;
-    }
-
-    private void ResetTimer()
-    {
-        washing = false;
-        washTimer = 0;
     }
 }
