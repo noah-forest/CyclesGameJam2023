@@ -7,7 +7,7 @@ using Vector3 = UnityEngine.Vector3;
 public class DragAndRotate : MonoBehaviour
 {
    protected Camera cam;
-   private float rotationSpeed = 1000;
+   private float rotationSpeed = 580;
    [SerializeField] private float movementSpeed = 15f;
 
    protected Rigidbody rb;
@@ -23,6 +23,9 @@ public class DragAndRotate : MonoBehaviour
 
    float xRotation;
    float yRotation;
+
+    [SerializeField]
+    private float rotationSmoothSpeed = 0.001f;
 
    public virtual void Awake()
    {
@@ -44,7 +47,7 @@ public class DragAndRotate : MonoBehaviour
          SetStartingDragPosition();
          Cursor.lockState = CursorLockMode.None;
          isRotating = false;
-         rb.angularDrag = 0.1f;
+         rb.angularDrag = 0.5f;
         }
         if (canRotate && isDragging && isRotating)
         {
@@ -66,9 +69,29 @@ public class DragAndRotate : MonoBehaviour
    private void UpdateRotation()
    {
         isRotating = true;
-        xRotation = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
-        yRotation = Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
-        rb.AddTorque( new Vector3(yRotation, -xRotation, 0), ForceMode.VelocityChange);
+        float xInput = Mathf.Clamp(Input.GetAxis("Mouse X"), -1, 1);
+        float yInput = Mathf.Clamp(Input.GetAxis("Mouse Y"), -1, 1);
+
+
+
+
+
+        xRotation = xInput * rotationSpeed * Time.deltaTime;
+        yRotation = yInput * rotationSpeed * Time.deltaTime;
+
+
+        Vector3 inputVector = new Vector3(yRotation, -xRotation, 0);
+        //Vector3 smoothref = Vector3.zero;//unused 
+        //inputVector = Vector3.SmoothDamp(rb.angularVelocity, inputVector, ref smoothref, rotationSmoothSpeed);
+
+
+        xRotation = Mathf.Clamp(xRotation, -0.5f, 0.5f);
+        yRotation = Mathf.Clamp(yRotation, -0.5f, 0.5f);
+
+        // if (xRotation != 0)  Debug.Log($"X input: {Input.GetAxis("Mouse X")}; X rot: {xRotation}");
+        //if(yRotation != 0) Debug.Log($"Y input: {Input.GetAxis("Mouse Y")}; Y rot: {yRotation}");
+
+        rb.AddTorque(inputVector, ForceMode.VelocityChange);
         rb.velocity = (targetPosition + startingDragPosition - transform.position) * movementSpeed;
    }
 

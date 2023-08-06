@@ -49,10 +49,10 @@ public class ThrownItem : MonoBehaviour
         {
             yield return new WaitForEndOfFrame();
         }
-        transform.position = originalPosition;
-        transform.rotation = originalRotation;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+        transform.position = originalPosition;
+        transform.rotation = originalRotation;
         canThrow = true;
     }
     
