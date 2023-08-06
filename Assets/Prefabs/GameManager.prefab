@@ -2514,7 +2514,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e5695575887084aa746c6ea95fbcf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winSound: {fileID: 8300000, guid: ebb8b77e4f9b6754b895699694117511, type: 3}
   loseSound: {fileID: 8300000, guid: 61ed9b710a9622141a0db85e79b3ca07, type: 3}
   audioSource: {fileID: 4106808029185514834}
   debugMode: 0
@@ -2531,6 +2530,7 @@ MonoBehaviour:
   uiManager: {fileID: 2320834493917097230}
   gameText: {fileID: 0}
   scoreText: {fileID: 0}
+  daysText: {fileID: 0}
   gameOverScreen: {fileID: 0}
   starAnim: {fileID: 0}
   maxTime: 0
@@ -2552,6 +2552,8 @@ MonoBehaviour:
   livesText: {fileID: 2837582516726188227}
   daysText: {fileID: 4823308977640019444}
   gameManager: {fileID: 7774902113505962378}
+  timerAudio: {fileID: 0}
+  timerSounds: []
 --- !u!82 &2557264028276997796
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4025,7 +4027,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6505759486926887541}
-  - component: {fileID: 2093964143466475032}
   - component: {fileID: 6713945098228872348}
   m_Layer: 0
   m_Name: exit (1)
@@ -4053,27 +4054,6 @@ Transform:
   - {fileID: 7596481897808414964}
   m_Father: {fileID: 8785099469617534242}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &2093964143466475032
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7505024244466915386}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d749da781360c3943bd9ffdfa3bbaf41, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &6713945098228872348
 MonoBehaviour:
   m_ObjectHideFlags: 0

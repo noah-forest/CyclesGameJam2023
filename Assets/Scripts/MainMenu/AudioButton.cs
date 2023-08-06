@@ -16,7 +16,7 @@ public class AudioButton : MonoBehaviour
 
     public void OnClick()
     {
-        anim.speed = 0; //pause the anim
+        if(anim) anim.speed = 0; //pause the anim
         slider.SetActive(true);
     }
 
